@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://daten.stadt.sg.ch"
+      }
+      description: "Allows searching and downloading parking records in Stadt St.Gallen with various parameters. Data includes parking locations, availability, occupancy, and more. The PLS Parkleitsystem St.Gallen AG measures available parking spaces in parking garages in the city of St.Gallen in real-time."
+      servers: [
+        {
+          description: "St.Gallen Open Data Portal API"
+          url: "https://daten.stadt.sg.ch/api"
+        }
+      ]
+      title: "Parking St.Gallen API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

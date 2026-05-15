@@ -1,0 +1,38 @@
+{
+  "existing": {
+    "parking_record": {
+      "PARKING_RECORD00": {
+        "datasetid": "s32",
+        "field": {},
+        "geometry": {},
+        "record_timestamp": "s35",
+        "recordid": "s36"
+      },
+      "PARKING_RECORD01": {
+        "datasetid": "s64",
+        "field": {},
+        "geometry": {},
+        "record_timestamp": "s67",
+        "recordid": "s68"
+      },
+      "PARKING_RECORD02": {
+        "datasetid": "s96",
+        "field": {},
+        "geometry": {},
+        "record_timestamp": "s99",
+        "recordid": "s9a"
+      }
+    }
+  },
+  "new": {
+    "parking_record": {
+      "parking_record_ref01": {
+        "datasetid": "sc8",
+        "field": {},
+        "geometry": {},
+        "record_timestamp": "scb",
+        "recordid": "scc"
+      }
+    }
+  }
+}

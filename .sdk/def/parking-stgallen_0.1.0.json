@@ -1,0 +1,426 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Parking St.Gallen API",
+    "description": "Allows searching and downloading parking records in Stadt St.Gallen with various parameters. Data includes parking locations, availability, occupancy, and more. The PLS Parkleitsystem St.Gallen AG measures available parking spaces in parking garages in the city of St.Gallen in real-time.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://daten.stadt.sg.ch"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://daten.stadt.sg.ch/api",
+      "description": "St.Gallen Open Data Portal API"
+    }
+  ],
+  "paths": {
+    "/records/1.0/search/": {
+      "get": {
+        "summary": "Search parking records",
+        "description": "Search and retrieve parking availability records from parking garages in Stadt St.Gallen. Returns real-time data about available parking spaces.",
+        "operationId": "searchParkingRecords",
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "query",
+            "required": true,
+            "description": "Dataset identifier",
+            "schema": {
+              "type": "string",
+              "default": "freie-parkplatze-in-der-stadt-stgallen-pls"
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "description": "Full-text search query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "rows",
+            "in": "query",
+            "required": false,
+            "description": "Number of results to return (max 100)",
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "minimum": 1,
+              "maximum": 100
+            }
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "description": "Index of the first result to return (for pagination)",
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Sort order (field name, optionally prefixed with - for descending order)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "facet",
+            "in": "query",
+            "required": false,
+            "description": "Field(s) to facet on (can be used multiple times)",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "phid",
+                  "phname"
+                ]
+              }
+            },
+            "explode": true
+          },
+          {
+            "name": "refine.phid",
+            "in": "query",
+            "required": false,
+            "description": "Filter by parking house ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "refine.phname",
+            "in": "query",
+            "required": false,
+            "description": "Filter by parking house name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exclude.phid",
+            "in": "query",
+            "required": false,
+            "description": "Exclude specific parking house ID",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "exclude.phname",
+            "in": "query",
+            "required": false,
+            "description": "Exclude specific parking house name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "Response format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "csv",
+                "geojson"
+              ],
+              "default": "json"
+            }
+          },
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": false,
+            "description": "Timezone for date/time fields",
+            "schema": {
+              "type": "string",
+              "default": "UTC"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "description": "Language for results",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "de",
+                "en",
+                "it"
+              ],
+              "default": "de"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with parking records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nhits": {
+                      "type": "integer",
+                      "description": "Total number of matching records"
+                    },
+                    "parameters": {
+                      "type": "object",
+                      "description": "Query parameters used for the search"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "datasetid": {
+                            "type": "string",
+                            "description": "Dataset identifier"
+                          },
+                          "recordid": {
+                            "type": "string",
+                            "description": "Unique record identifier"
+                          },
+                          "fields": {
+                            "type": "object",
+                            "properties": {
+                              "phid": {
+                                "type": "string",
+                                "description": "Parking house ID"
+                              },
+                              "phname": {
+                                "type": "string",
+                                "description": "Parking house name"
+                              },
+                              "shortfree": {
+                                "type": "integer",
+                                "description": "Number of available short-term parking spaces"
+                              },
+                              "total": {
+                                "type": "integer",
+                                "description": "Total number of parking spaces"
+                              },
+                              "free": {
+                                "type": "integer",
+                                "description": "Number of free parking spaces"
+                              },
+                              "open": {
+                                "type": "boolean",
+                                "description": "Whether the parking house is open"
+                              },
+                              "timestamp": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "Timestamp of the data"
+                              },
+                              "geo_point_2d": {
+                                "type": "array",
+                                "items": {
+                                  "type": "number"
+                                },
+                                "description": "Geographic coordinates [lat, lon]"
+                              }
+                            }
+                          },
+                          "geometry": {
+                            "type": "object",
+                            "description": "GeoJSON geometry"
+                          },
+                          "record_timestamp": {
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Record processing timestamp"
+                          }
+                        }
+                      }
+                    },
+                    "facet_groups": {
+                      "type": "array",
+                      "description": "Facet results if faceting was requested",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string",
+                  "description": "CSV formatted parking records"
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "type": "object",
+                  "description": "GeoJSON formatted parking records"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Dataset not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "description": "Error message"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Parking Records"
+        ]
+      }
+    },
+    "/records/1.0/download/": {
+      "get": {
+        "summary": "Download parking records",
+        "description": "Download the complete dataset of parking records in various formats",
+        "operationId": "downloadParkingRecords",
+        "parameters": [
+          {
+            "name": "dataset",
+            "in": "query",
+            "required": true,
+            "description": "Dataset identifier",
+            "schema": {
+              "type": "string",
+              "default": "freie-parkplatze-in-der-stadt-stgallen-pls"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "Download format",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "csv",
+                "geojson",
+                "shp"
+              ],
+              "default": "json"
+            }
+          },
+          {
+            "name": "timezone",
+            "in": "query",
+            "required": false,
+            "description": "Timezone for date/time fields",
+            "schema": {
+              "type": "string",
+              "default": "UTC"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful download",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Complete dataset in JSON format"
+                }
+              },
+              "text/csv": {
+                "schema": {
+                  "type": "string",
+                  "description": "Complete dataset in CSV format"
+                }
+              },
+              "application/geo+json": {
+                "schema": {
+                  "type": "object",
+                  "description": "Complete dataset in GeoJSON format"
+                }
+              },
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary",
+                  "description": "Complete dataset in Shapefile format (zipped)"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters"
+          },
+          "404": {
+            "description": "Dataset not found"
+          }
+        },
+        "tags": [
+          "Parking Records"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Parking Records",
+      "description": "Operations for searching and downloading parking availability data"
+    }
+  ],
+  "externalDocs": {
+    "description": "Full API documentation and dataset information",
+    "url": "https://daten.stadt.sg.ch/explore/dataset/freie-parkplatze-in-der-stadt-stgallen-pls/api/"
+  }
+}

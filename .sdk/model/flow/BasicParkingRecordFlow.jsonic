@@ -1,0 +1,40 @@
+# BasicParkingRecordFlow
+
+main: kit: flow: BasicParkingRecordFlow:
+{
+  entity: "parking_record",
+  kind: "basic",
+  name: "BasicParkingRecordFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "parking_record_ref01"
+          }
+        }
+      ]
+    }
+
+    {
+      input: {
+        ref: "parking_record_ref01",
+        srcdatavar: "parking_record_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-parking_record_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicParkingRecordFlow"
+}

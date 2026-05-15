@@ -1,0 +1,105 @@
+# ParkingStgallen SDK context
+
+require_relative '../utility/struct/voxgig_struct'
+require_relative 'control'
+require_relative 'operation'
+require_relative 'spec'
+require_relative 'result'
+require_relative 'response'
+require_relative 'error'
+require_relative 'helpers'
+
+class ParkingStgallenContext
+  attr_accessor :id, :out, :client, :utility, :ctrl, :meta, :config,
+                :entopts, :options, :entity, :shared, :opmap,
+                :data, :reqdata, :match, :reqmatch, :point,
+                :spec, :result, :response, :op
+
+  def initialize(ctxmap = {}, basectx = nil)
+    ctxmap ||= {}
+    @id = "C#{rand(10000000..99999999)}"
+    @out = {}
+
+    @client = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "client") || basectx&.client
+    @utility = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "utility") || basectx&.utility
+
+    @ctrl = ParkingStgallenControl.new
+    ctrl_raw = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "ctrl")
+    if ctrl_raw.is_a?(Hash)
+      @ctrl.throw_err = ctrl_raw["throw"] if ctrl_raw.key?("throw")
+      @ctrl.explain = ctrl_raw["explain"] if ctrl_raw["explain"].is_a?(Hash)
+    elsif basectx&.ctrl
+      @ctrl = basectx.ctrl
+    end
+
+    m = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "meta")
+    @meta = m.is_a?(Hash) ? m : (basectx&.meta || {})
+
+    cfg = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "config")
+    @config = cfg.is_a?(Hash) ? cfg : basectx&.config
+
+    eo = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "entopts")
+    @entopts = eo.is_a?(Hash) ? eo : basectx&.entopts
+
+    o = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "options")
+    @options = o.is_a?(Hash) ? o : basectx&.options
+
+    e = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "entity")
+    @entity = e || basectx&.entity
+
+    s = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "shared")
+    @shared = s.is_a?(Hash) ? s : basectx&.shared
+
+    om = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "opmap")
+    @opmap = om.is_a?(Hash) ? om : (basectx&.opmap || {})
+
+    @data = ParkingStgallenHelpers.to_map(ParkingStgallenHelpers.get_ctx_prop(ctxmap, "data")) || {}
+    @reqdata = ParkingStgallenHelpers.to_map(ParkingStgallenHelpers.get_ctx_prop(ctxmap, "reqdata")) || {}
+    @match = ParkingStgallenHelpers.to_map(ParkingStgallenHelpers.get_ctx_prop(ctxmap, "match")) || {}
+    @reqmatch = ParkingStgallenHelpers.to_map(ParkingStgallenHelpers.get_ctx_prop(ctxmap, "reqmatch")) || {}
+
+    pt = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "point")
+    @point = pt.is_a?(Hash) ? pt : basectx&.point
+
+    sp = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "spec")
+    @spec = sp.is_a?(ParkingStgallenSpec) ? sp : basectx&.spec
+
+    r = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "result")
+    @result = r.is_a?(ParkingStgallenResult) ? r : basectx&.result
+
+    rp = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "response")
+    @response = rp.is_a?(ParkingStgallenResponse) ? rp : basectx&.response
+
+    opname = ParkingStgallenHelpers.get_ctx_prop(ctxmap, "opname") || ""
+    @op = resolve_op(opname)
+  end
+
+  def resolve_op(opname)
+    return @opmap[opname] if @opmap[opname]
+    return ParkingStgallenOperation.new({}) if opname.empty?
+
+    entname = @entity&.respond_to?(:get_name) ? @entity.get_name : "_"
+    opcfg = VoxgigStruct.getpath(@config, "entity.#{entname}.op.#{opname}")
+
+    input = (opname == "update" || opname == "create") ? "data" : "match"
+
+    points = []
+    if opcfg.is_a?(Hash)
+      t = VoxgigStruct.getprop(opcfg, "points")
+      points = t if t.is_a?(Array)
+    end
+
+    op = ParkingStgallenOperation.new({
+      "entity" => entname,
+      "name" => opname,
+      "input" => input,
+      "points" => points,
+    })
+    @opmap[opname] = op
+    op
+  end
+
+  def make_error(code, msg)
+    ParkingStgallenError.new(code, msg, self)
+  end
+end
