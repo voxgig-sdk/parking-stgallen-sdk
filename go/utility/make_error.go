@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/parking-stgallen-sdk/core"
+import "github.com/voxgig-sdk/parking-stgallen-sdk/go/core"
 
 func makeErrorUtil(ctx *core.Context, err error) (any, error) {
 	if ctx == nil {

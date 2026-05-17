@@ -6,21 +6,24 @@
         "field": {},
         "geometry": {},
         "record_timestamp": "s35",
-        "recordid": "s36"
+        "recordid": "s36",
+        "id": "PARKING_RECORD00"
       },
       "PARKING_RECORD01": {
         "datasetid": "s64",
         "field": {},
         "geometry": {},
         "record_timestamp": "s67",
-        "recordid": "s68"
+        "recordid": "s68",
+        "id": "PARKING_RECORD01"
       },
       "PARKING_RECORD02": {
         "datasetid": "s96",
         "field": {},
         "geometry": {},
         "record_timestamp": "s99",
-        "recordid": "s9a"
+        "recordid": "s9a",
+        "id": "PARKING_RECORD02"
       }
     }
   },

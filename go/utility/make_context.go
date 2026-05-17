@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/parking-stgallen-sdk/core"
+import "github.com/voxgig-sdk/parking-stgallen-sdk/go/core"
 
 func makeContextUtil(ctxmap map[string]any, basectx *core.Context) *core.Context {
 	return core.NewContext(ctxmap, basectx)

@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/parking-stgallen-sdk"
-	"github.com/voxgig-sdk/parking-stgallen-sdk/core"
+	sdk "github.com/voxgig-sdk/parking-stgallen-sdk/go"
+	"github.com/voxgig-sdk/parking-stgallen-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/parking-stgallen-sdk/go/utility/struct"
 )
 
 func TestParkingRecordEntity(t *testing.T) {

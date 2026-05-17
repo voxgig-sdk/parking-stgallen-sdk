@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/parking-stgallen-sdk"
-	"github.com/voxgig-sdk/parking-stgallen-sdk/core"
+	sdk "github.com/voxgig-sdk/parking-stgallen-sdk/go"
+	"github.com/voxgig-sdk/parking-stgallen-sdk/go/core"
 )
 
 func TestParkingRecordDirect(t *testing.T) {

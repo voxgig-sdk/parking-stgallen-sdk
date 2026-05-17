@@ -1,10 +1,10 @@
 package voxgigparkingstgallensdk
 
 import (
-	"github.com/voxgig-sdk/parking-stgallen-sdk/core"
-	"github.com/voxgig-sdk/parking-stgallen-sdk/entity"
-	"github.com/voxgig-sdk/parking-stgallen-sdk/feature"
-	_ "github.com/voxgig-sdk/parking-stgallen-sdk/utility"
+	"github.com/voxgig-sdk/parking-stgallen-sdk/go/core"
+	"github.com/voxgig-sdk/parking-stgallen-sdk/go/entity"
+	"github.com/voxgig-sdk/parking-stgallen-sdk/go/feature"
+	_ "github.com/voxgig-sdk/parking-stgallen-sdk/go/utility"
 )
 
 // Type aliases preserve external API.
