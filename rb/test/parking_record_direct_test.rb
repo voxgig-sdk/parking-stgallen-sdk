@@ -112,14 +112,12 @@ def parking_record_direct_setup(mockres)
   env = Runner.env_override({
     "PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID" => {},
     "PARKINGSTGALLEN_TEST_LIVE" => "FALSE",
-    "PARKINGSTGALLEN_APIKEY" => "NONE",
   })
 
   live = env["PARKINGSTGALLEN_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["PARKINGSTGALLEN_APIKEY"],
     }
     client = ParkingStgallenSDK.new(merged_opts)
     return {

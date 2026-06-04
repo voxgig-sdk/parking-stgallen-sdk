@@ -98,7 +98,6 @@ def _parking_record_basic_setup(extra):
         "PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID": idmap,
         "PARKINGSTGALLEN_TEST_LIVE": "FALSE",
         "PARKINGSTGALLEN_TEST_EXPLAIN": "FALSE",
-        "PARKINGSTGALLEN_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +108,6 @@ def _parking_record_basic_setup(extra):
     if env.get("PARKINGSTGALLEN_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("PARKINGSTGALLEN_APIKEY"),
             },
             extra or {},
         ])

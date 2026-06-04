@@ -23,12 +23,9 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
-import os
 from parkingstgallen_sdk import ParkingStgallenSDK
 
-client = ParkingStgallenSDK({
-    "apikey": os.environ.get("PARKING-STGALLEN_APIKEY"),
-})
+client = ParkingStgallenSDK({})
 ```
 
 ### 2. List parkingrecords
@@ -130,7 +127,6 @@ Create a `.env.local` file at the project root:
 
 ```
 PARKING-STGALLEN_TEST_LIVE=TRUE
-PARKING-STGALLEN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +150,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |

@@ -139,14 +139,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID': {},
     'PARKINGSTGALLEN_TEST_LIVE': 'FALSE',
-    'PARKINGSTGALLEN_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.PARKINGSTGALLEN_TEST_LIVE
 
   if (live) {
     const client = new ParkingStgallenSDK({
-      apikey: env.PARKINGSTGALLEN_APIKEY,
     })
 
     let idmap: any = env['PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID']
