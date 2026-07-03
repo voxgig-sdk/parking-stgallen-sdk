@@ -10,7 +10,7 @@ The Python SDK for the ParkingStgallen API — an entity-oriented client followi
 
 ## Install
 ```bash
-pip install parking-stgallen-sdk
+pip install voxgig-sdk-parking-stgallen
 ```
 
 Or install from source:

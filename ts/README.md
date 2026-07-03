@@ -10,7 +10,7 @@ The TypeScript SDK for the ParkingStgallen API — a type-safe, entity-oriented 
 
 ## Install
 ```bash
-npm install parking-stgallen
+npm install @voxgig-sdk/parking-stgallen
 ```
 ## Tutorial: your first API call
 

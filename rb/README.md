@@ -10,13 +10,13 @@ The Ruby SDK for the ParkingStgallen API — an entity-oriented client using idi
 
 ## Install
 ```bash
-gem install parking-stgallen-sdk
+gem install voxgig-sdk-parking-stgallen
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "parking-stgallen-sdk"
+gem "voxgig-sdk-parking-stgallen"
 ```
 
 Then run:
