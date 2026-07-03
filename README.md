@@ -1,16 +1,8 @@
 # ParkingStgallen SDK
 
-Real-time availability of public parking facilities in the city of St.Gallen, Switzerland
+Parking St.Gallen API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Parking St.Gallen API
-
-The Parking St.Gallen API exposes real-time data on public parking facilities (Parkleitsystem / PLS) in the city of [St.Gallen, Switzerland](https://daten.stadt.sg.ch/). It is published by the city's open data portal, which is built on the [Opendatasoft](https://help.opendatasoft.com/) platform.
-
-The primary dataset (`freie-parkplatze-in-der-stadt-stgallen-pls`) is exposed through the standard Opendatasoft Explore v2.1 API, which supports search, filtering, sorting, pagination, and export over the underlying parking records.
-
-Operational notes: no authentication is required for read access. The community catalogue at freepublicapis.com reports that CORS is disabled on the endpoint, so browser-side calls may need to go through a proxy.
 
 ## Try it
 
@@ -44,29 +36,31 @@ gem install parking-stgallen-sdk
 luarocks install parking-stgallen-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { ParkingStgallenSDK } from 'parking-stgallen'
 
-const client = new ParkingStgallenSDK({})
+const client = new ParkingStgallenSDK({
+  apikey: process.env.PARKING-STGALLEN_APIKEY,
+})
 
 // List all parkingrecords
 const parkingrecords = await client.ParkingRecord().list()
+console.log(parkingrecords.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -96,7 +90,7 @@ The API exposes one entity:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **ParkingRecord** | A single record from the public parking dataset, retrieved via `GET /explore/v2.1/catalog/datasets/freie-parkplatze-in-der-stadt-stgallen-pls/records` and representing a parking facility entry from the St.Gallen Parkleitsystem (PLS). | `/records/1.0/search/` |
+| **ParkingRecord** |  | `/records/1.0/search/` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -106,17 +100,20 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from parkingstgallen_sdk import ParkingStgallenSDK
 
-client = ParkingStgallenSDK({})
+client = ParkingStgallenSDK({
+    "apikey": os.environ.get("PARKING-STGALLEN_APIKEY"),
+})
 
 # List all parkingrecords
-parkingrecords, err = client.ParkingRecord(None).list(None, None)
+parkingrecords, err = client.ParkingRecord().list()
+print(parkingrecords)
 
 # Load a specific parkingrecord
-parkingrecord, err = client.ParkingRecord(None).load(
-    {"id": "example_id"}, None
-)
+parkingrecord, err = client.ParkingRecord().load({"id": "example_id"})
+print(parkingrecord)
 ```
 
 ### PHP
@@ -125,15 +122,17 @@ parkingrecord, err = client.ParkingRecord(None).load(
 <?php
 require_once 'parkingstgallen_sdk.php';
 
-$client = new ParkingStgallenSDK([]);
+$client = new ParkingStgallenSDK([
+    "apikey" => getenv("PARKING-STGALLEN_APIKEY"),
+]);
 
 // List all parkingrecords
-[$parkingrecords, $err] = $client->ParkingRecord(null)->list(null, null);
+[$parkingrecords, $err] = $client->ParkingRecord()->list();
+print_r($parkingrecords);
 
 // Load a specific parkingrecord
-[$parkingrecord, $err] = $client->ParkingRecord(null)->load(
-    ["id" => "example_id"], null
-);
+[$parkingrecord, $err] = $client->ParkingRecord()->load(["id" => "example_id"]);
+print_r($parkingrecord);
 ```
 
 ### Golang
@@ -141,10 +140,13 @@ $client = new ParkingStgallenSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/parking-stgallen-sdk/go"
 
-client := sdk.NewParkingStgallenSDK(map[string]any{})
+client := sdk.NewParkingStgallenSDK(map[string]any{
+    "apikey": os.Getenv("PARKING-STGALLEN_APIKEY"),
+})
 
 // List all parkingrecords
 parkingrecords, err := client.ParkingRecord(nil).List(nil, nil)
+fmt.Println(parkingrecords)
 ```
 
 ### Ruby
@@ -152,15 +154,17 @@ parkingrecords, err := client.ParkingRecord(nil).List(nil, nil)
 ```ruby
 require_relative "ParkingStgallen_sdk"
 
-client = ParkingStgallenSDK.new({})
+client = ParkingStgallenSDK.new({
+  "apikey" => ENV["PARKING-STGALLEN_APIKEY"],
+})
 
 # List all parkingrecords
-parkingrecords, err = client.ParkingRecord(nil).list(nil, nil)
+parkingrecords, err = client.ParkingRecord().list
+puts parkingrecords
 
 # Load a specific parkingrecord
-parkingrecord, err = client.ParkingRecord(nil).load(
-  { "id" => "example_id" }, nil
-)
+parkingrecord, err = client.ParkingRecord().load({ "id" => "example_id" })
+puts parkingrecord
 ```
 
 ### Lua
@@ -168,15 +172,17 @@ parkingrecord, err = client.ParkingRecord(nil).load(
 ```lua
 local sdk = require("parking-stgallen_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("PARKING-STGALLEN_APIKEY"),
+})
 
 -- List all parkingrecords
-local parkingrecords, err = client:ParkingRecord(nil):list(nil, nil)
+local parkingrecords, err = client:ParkingRecord():list()
+print(parkingrecords)
 
 -- Load a specific parkingrecord
-local parkingrecord, err = client:ParkingRecord(nil):load(
-  { id = "example_id" }, nil
-)
+local parkingrecord, err = client:ParkingRecord():load({ id = "example_id" })
+print(parkingrecord)
 ```
 
 ## Unit testing in offline mode
@@ -195,25 +201,21 @@ const result = await client.ParkingRecord().load({ id: 'test01' })
 ### Python
 
 ```python
-client = ParkingStgallenSDK.test(None, None)
-result, err = client.ParkingRecord(None).load(
-    {"id": "test01"}, None
-)
+client = ParkingStgallenSDK.test()
+result, err = client.ParkingRecord().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = ParkingStgallenSDK::test(null, null);
-[$result, $err] = $client->ParkingRecord(null)->load(
-    ["id" => "test01"], null
-);
+$client = ParkingStgallenSDK::test();
+[$result, $err] = $client->ParkingRecord()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.ParkingRecord(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -222,19 +224,15 @@ result, err := client.ParkingRecord(nil).Load(
 ### Ruby
 
 ```ruby
-client = ParkingStgallenSDK.test(nil, nil)
-result, err = client.ParkingRecord(nil).load(
-  { "id" => "test01" }, nil
-)
+client = ParkingStgallenSDK.test
+result, err = client.ParkingRecord().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:ParkingRecord(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:ParkingRecord():load({ id = "test01" })
 ```
 
 ## How it works
@@ -338,11 +336,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Parking St.Gallen API
-
-- Upstream: [https://daten.stadt.sg.ch/](https://daten.stadt.sg.ch/)
-- API docs: [https://daten.stadt.sg.ch/api-console/](https://daten.stadt.sg.ch/api-console/)
 
 ---
 

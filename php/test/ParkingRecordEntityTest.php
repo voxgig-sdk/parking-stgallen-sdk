@@ -92,6 +92,7 @@ function parking_record_basic_setup($extra)
         "PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID" => $idmap,
         "PARKINGSTGALLEN_TEST_LIVE" => "FALSE",
         "PARKINGSTGALLEN_TEST_EXPLAIN" => "FALSE",
+        "PARKINGSTGALLEN_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -103,6 +104,7 @@ function parking_record_basic_setup($extra)
     if ($env["PARKINGSTGALLEN_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
+                "apikey" => $env["PARKINGSTGALLEN_APIKEY"],
             ],
             $extra ?? [],
         ]);

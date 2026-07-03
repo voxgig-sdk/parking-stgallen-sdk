@@ -1,6 +1,11 @@
 # ParkingStgallen Lua SDK
 
-The Lua SDK for the ParkingStgallen API. Provides an entity-oriented interface using Lua conventions.
+
+
+The Lua SDK for the ParkingStgallen API — an entity-oriented client using Lua conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -26,13 +31,15 @@ loading a specific record.
 ```lua
 local sdk = require("parking-stgallen_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("PARKING-STGALLEN_APIKEY"),
+})
 ```
 
 ### 2. List parkingrecords
 
 ```lua
-local result, err = client:ParkingRecord(nil):list(nil, nil)
+local result, err = client:ParkingRecord():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -46,7 +53,7 @@ end
 ### 3. Load a parkingrecord
 
 ```lua
-local result, err = client:ParkingRecord(nil):load({ id = "example_id" }, nil)
+local result, err = client:ParkingRecord():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -92,11 +99,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 
-local result, err = client:ParkingStgallen(nil):load(
-  { id = "test01" }, nil
-)
+local result, err = client:ParkingStgallen():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -130,6 +135,7 @@ Create a `.env.local` file at the project root:
 
 ```
 PARKING-STGALLEN_TEST_LIVE=TRUE
+PARKING-STGALLEN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -152,6 +158,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |

@@ -16,18 +16,7 @@ main: {
       ]
       title: "Parking St.Gallen API"
       version: "1.0.0"
-      tagline: "Real-time availability of public parking facilities in the city of St.Gallen, Switzerland"
-      homepage: "https://daten.stadt.sg.ch/"
-      docs_url: "https://daten.stadt.sg.ch/api-console/"
-      about_md: `The Parking St.Gallen API exposes real-time data on public parking facilities (Parkleitsystem / PLS) in the city of [St.Gallen, Switzerland](https://daten.stadt.sg.ch/). It is published by the city's open data portal, which is built on the [Opendatasoft](https://help.opendatasoft.com/) platform.
-
-The primary dataset (\`freie-parkplatze-in-der-stadt-stgallen-pls\`) is exposed through the standard Opendatasoft Explore v2.1 API, which supports search, filtering, sorting, pagination, and export over the underlying parking records.
-
-Operational notes: no authentication is required for read access. The community catalogue at freepublicapis.com reports that CORS is disabled on the endpoint, so browser-side calls may need to go through a proxy.`
-      entity_desc: {
-        parking_record: "A single record from the public parking dataset, retrieved via `GET /explore/v2.1/catalog/datasets/freie-parkplatze-in-der-stadt-stgallen-pls/records` and representing a parking facility entry from the St.Gallen Parkleitsystem (PLS)."
-      }
-      auth: false
     }
   }
 }
+

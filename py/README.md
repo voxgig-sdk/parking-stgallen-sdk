@@ -1,6 +1,11 @@
 # ParkingStgallen Python SDK
 
-The Python SDK for the ParkingStgallen API. Provides an entity-oriented interface following Pythonic conventions.
+
+
+The Python SDK for the ParkingStgallen API — an entity-oriented client following Pythonic conventions.
+
+> Other languages, the CLI, and MCP server live alongside this one — see
+> the [top-level README](../README.md).
 
 
 ## Install
@@ -23,15 +28,18 @@ loading a specific record.
 ### 1. Create a client
 
 ```python
+import os
 from parkingstgallen_sdk import ParkingStgallenSDK
 
-client = ParkingStgallenSDK({})
+client = ParkingStgallenSDK({
+    "apikey": os.environ.get("PARKING-STGALLEN_APIKEY"),
+})
 ```
 
 ### 2. List parkingrecords
 
 ```python
-result, err = client.ParkingRecord(None).list(None, None)
+result, err = client.ParkingRecord().list()
 if err:
     raise Exception(err)
 
@@ -44,7 +52,7 @@ if isinstance(result, list):
 ### 3. Load a parkingrecord
 
 ```python
-result, err = client.ParkingRecord(None).load({"id": "example_id"}, None)
+result, err = client.ParkingRecord().load({"id": "example_id"})
 if err:
     raise Exception(err)
 print(result)
@@ -92,11 +100,9 @@ print(fetchdef["headers"])
 Create a mock client for unit testing — no server required:
 
 ```python
-client = ParkingStgallenSDK.test(None, None)
+client = ParkingStgallenSDK.test()
 
-result, err = client.ParkingStgallen(None).load(
-    {"id": "test01"}, None
-)
+result, err = client.ParkingStgallen().load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -127,6 +133,7 @@ Create a `.env.local` file at the project root:
 
 ```
 PARKING-STGALLEN_TEST_LIVE=TRUE
+PARKING-STGALLEN_APIKEY=<your-key>
 ```
 
 Then run:
@@ -150,6 +157,7 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
+| `apikey` | `str` | API key for authentication. |
 | `base` | `str` | Base URL of the API server. |
 | `prefix` | `str` | URL path prefix prepended to all requests. |
 | `suffix` | `str` | URL path suffix appended to all requests. |
