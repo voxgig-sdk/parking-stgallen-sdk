@@ -86,7 +86,7 @@ same parameters as `direct()`. Raises on error.
 ## ParkingRecordEntity
 
 ```ruby
-parking_record = client.parking_record
+parking_record = client.ParkingRecord
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ parking_record = client.parking_record
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.parking_record.list(nil)
+results = client.ParkingRecord.list(nil)
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -114,7 +114,7 @@ results = client.parking_record.list(nil)
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.parking_record.load({ "id" => "parking_record_id" })
+result = client.ParkingRecord.load({ "id" => "parking_record_id" })
 ```
 
 ### Common Methods

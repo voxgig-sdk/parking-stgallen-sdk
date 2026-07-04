@@ -31,24 +31,28 @@ from parkingstgallen_sdk import ParkingStgallenSDK
 client = ParkingStgallenSDK()
 ```
 
-### 2. List parkingrecords
+### 2. List parkingrecord records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.parkingrecord.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    parkingrecords = client.ParkingRecord().list({})
+    for parkingrecord in parkingrecords:
+        print(parkingrecord)
 except Exception as err:
     print(f"list failed: {err}")
 ```
 
 ### 3. Load a parkingrecord
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.parkingrecord.load({"id": "example_id"})
-    print(result)
+    parkingrecord = client.ParkingRecord().load({"id": "example_id"})
+    print(parkingrecord)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -96,8 +100,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = ParkingStgallenSDK.test()
 
-result = client.parkingrecord.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+parkingrecord = client.ParkingRecord().load({"id": "test01"})
+# parkingrecord contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -234,7 +239,7 @@ API path: `/records/1.0/search/`
 
 ### ParkingRecord
 
-Create an instance: `const parking_record = client.parking_record`
+Create an instance: `parking_record = client.ParkingRecord()`
 
 #### Operations
 
@@ -255,14 +260,14 @@ Create an instance: `const parking_record = client.parking_record`
 
 #### Example: Load
 
-```ts
-const parking_record = await client.parking_record.load({ id: 'parking_record_id' })
+```python
+parking_record = client.ParkingRecord().load({"id": "parking_record_id"})
 ```
 
 #### Example: List
 
-```ts
-const parking_records = await client.parking_record.list()
+```python
+parking_records = client.ParkingRecord().list({})
 ```
 
 
@@ -336,7 +341,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-parkingrecord = client.parkingrecord
+parkingrecord = client.ParkingRecord()
 parkingrecord.load({"id": "example_id"})
 
 # parkingrecord.data_get() now returns the loaded parkingrecord data

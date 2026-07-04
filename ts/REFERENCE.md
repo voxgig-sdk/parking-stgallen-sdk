@@ -109,7 +109,7 @@ Alias for `ParkingStgallenSDK.test()`.
 ## ParkingRecordEntity
 
 ```ts
-const parking_record = client.parking_record
+const parking_record = client.ParkingRecord()
 ```
 
 ### Fields
@@ -129,7 +129,7 @@ const parking_record = client.parking_record
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.parking_record.list()
+const results = await client.ParkingRecord().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -137,7 +137,7 @@ const results = await client.parking_record.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.parking_record.load({ id: 'parking_record_id' })
+const result = await client.ParkingRecord().load({ id: 'parking_record_id' })
 ```
 
 ### Common Methods

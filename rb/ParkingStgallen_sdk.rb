@@ -208,13 +208,7 @@ class ParkingStgallenSDK
   end
 
 
-  # Idiomatic facade: client.parking_record.list / client.parking_record.load({ "id" => ... })
-  def parking_record
-    require_relative 'entity/parking_record_entity'
-    @parking_record ||= ParkingRecordEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.parking_record instead.
+  # Canonical facade: client.ParkingRecord.list / client.ParkingRecord.load({ "id" => ... })
   def ParkingRecord(data = nil)
     require_relative 'entity/parking_record_entity'
     ParkingRecordEntity.new(self, data)

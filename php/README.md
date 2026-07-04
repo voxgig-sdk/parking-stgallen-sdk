@@ -29,18 +29,16 @@ require_once 'parkingstgallen_sdk.php';
 $client = new ParkingStgallenSDK();
 ```
 
-### 2. List parkingrecords
+### 2. List parkingrecord records
 
 ```php
 try {
-    $result = $client->parkingrecord()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of ParkingRecord records — iterate directly.
+    $parkingrecords = $client->ParkingRecord()->list();
+    foreach ($parkingrecords as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -49,9 +47,10 @@ try {
 
 ```php
 try {
-    $result = $client->parkingrecord()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare ParkingRecord record (throws on error).
+    $parkingrecord = $client->ParkingRecord()->load(["id" => "example_id"]);
+    print_r($parkingrecord);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -97,13 +96,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = ParkingStgallenSDK::test();
+$client = ParkingStgallenSDK::test([
+    "entity" => ["parkingrecord" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->parkingrecord()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$parkingrecord = $client->ParkingRecord()->load(["id" => "test01"]);
+print_r($parkingrecord);
 ```
 
 ### Use a custom fetch function
@@ -243,7 +246,7 @@ API path: `/records/1.0/search/`
 
 ### ParkingRecord
 
-Create an instance: `const parking_record = client.parking_record`
+Create an instance: `$parking_record = $client->ParkingRecord();`
 
 #### Operations
 
@@ -264,14 +267,16 @@ Create an instance: `const parking_record = client.parking_record`
 
 #### Example: Load
 
-```ts
-const parking_record = await client.parking_record.load({ id: 'parking_record_id' })
+```php
+// load() returns the bare ParkingRecord record (throws on error).
+$parking_record = $client->ParkingRecord()->load(["id" => "parking_record_id"]);
 ```
 
 #### Example: List
 
-```ts
-const parking_records = await client.parking_record.list()
+```php
+// list() returns an array of ParkingRecord records (throws on error).
+$parking_records = $client->ParkingRecord()->list();
 ```
 
 
@@ -346,7 +351,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$parkingrecord = $client->parkingrecord();
+$parkingrecord = $client->ParkingRecord();
 $parkingrecord->load(["id" => "example_id"]);
 
 // $parkingrecord->dataGet() now returns the loaded parkingrecord data

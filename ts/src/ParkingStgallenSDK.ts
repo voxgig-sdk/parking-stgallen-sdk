@@ -204,14 +204,7 @@ class ParkingStgallenSDK {
 
 
 
-  _parking_record?: ParkingRecordEntity
-
-  // Idiomatic facade: `client.parking_record.list()` / `client.parking_record.load({ id })`.
-  get parking_record(): ParkingRecordEntity {
-    return (this._parking_record ??= new ParkingRecordEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.parking_record` instead. */
+  // Entity access: `client.ParkingRecord().list()` / `client.ParkingRecord().load({ id })`.
   ParkingRecord(data?: any) {
     const self = this
     return new ParkingRecordEntity(self,data)

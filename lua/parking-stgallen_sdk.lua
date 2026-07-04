@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:parking_record():list() / client:parking_record():load({ id = ... })
-function ParkingStgallenSDK:parking_record(data)
+-- Idiomatic facade: client:ParkingRecord():list() / client:ParkingRecord():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function ParkingStgallenSDK:ParkingRecord(data)
   local EntityMod = require("entity.parking_record_entity")
   if data == nil then
     if self._parking_record == nil then
@@ -253,12 +254,6 @@ function ParkingStgallenSDK:parking_record(data)
     end
     return self._parking_record
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:parking_record() instead.
-function ParkingStgallenSDK:ParkingRecord(data)
-  local EntityMod = require("entity.parking_record_entity")
   return EntityMod.new(self, data)
 end
 

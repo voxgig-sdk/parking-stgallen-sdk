@@ -85,7 +85,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## ParkingRecordEntity
 
 ```php
-$parking_record = $client->parking_record();
+$parking_record = $client->ParkingRecord();
 ```
 
 ### Fields
@@ -105,7 +105,7 @@ $parking_record = $client->parking_record();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->parking_record()->list([]);
+$results = $client->ParkingRecord()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -113,7 +113,7 @@ $results = $client->parking_record()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->parking_record()->load(["id" => "parking_record_id"]);
+$result = $client->ParkingRecord()->load(["id" => "parking_record_id"]);
 ```
 
 ### Common Methods

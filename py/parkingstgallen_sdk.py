@@ -220,25 +220,15 @@ class ParkingStgallenSDK:
         }
 
 
-    @property
-    def parking_record(self):
-        """Idiomatic facade: client.parking_record.list() / client.parking_record.load({"id": ...})."""
-        from entity.parking_record_entity import ParkingRecordEntity
-        cached = getattr(self, "_parking_record", None)
-        if cached is None:
-            cached = ParkingRecordEntity(self, None)
-            self._parking_record = cached
-        return cached
-
-    def ParkingRecord(self, data=None):
-        # Deprecated: use client.parking_record instead.
+    def ParkingRecord(self, data=None) -> "ParkingRecordEntity":
+        """Entity factory: client.ParkingRecord().list({}) / client.ParkingRecord().load({"id": ...})."""
         from entity.parking_record_entity import ParkingRecordEntity
         return ParkingRecordEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "ParkingStgallenSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -258,3 +248,9 @@ class ParkingStgallenSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.parking_record_entity import ParkingRecordEntity

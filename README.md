@@ -26,9 +26,11 @@ import { ParkingStgallenSDK } from '@voxgig-sdk/parking-stgallen'
 
 const client = new ParkingStgallenSDK()
 
-// List all parkingrecords
-const parkingrecords = await client.parkingrecord.list()
-console.log(parkingrecords.data)
+// List all parkingrecords (returns ParkingRecord[])
+const parkingrecords = await client.ParkingRecord().list()
+for (const parkingrecord of parkingrecords) {
+  console.log(parkingrecord)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -83,12 +85,13 @@ from parkingstgallen_sdk import ParkingStgallenSDK
 
 client = ParkingStgallenSDK()
 
-# List all parkingrecords
-parkingrecords = client.parkingrecord.list()
-print(parkingrecords)
+# List all parkingrecords (returns a list, raises on error)
+parkingrecords = client.ParkingRecord().list({})
+for parkingrecord in parkingrecords:
+    print(parkingrecord)
 
-# Load a specific parkingrecord
-parkingrecord = client.parkingrecord.load({"id": "example_id"})
+# Load a specific parkingrecord (returns the record, raises on error)
+parkingrecord = client.ParkingRecord().load({"id": "example_id"})
 print(parkingrecord)
 ```
 
@@ -100,12 +103,12 @@ require_once 'parkingstgallen_sdk.php';
 
 $client = new ParkingStgallenSDK();
 
-// List all parkingrecords (throws on error)
-$parkingrecords = $client->parkingrecord()->list();
+// List all parkingrecords (returns an array; throws on error)
+$parkingrecords = $client->ParkingRecord()->list();
 print_r($parkingrecords);
 
-// Load a specific parkingrecord
-$parkingrecord = $client->parkingrecord()->load(["id" => "example_id"]);
+// Load a specific parkingrecord (returns the bare record; throws on error)
+$parkingrecord = $client->ParkingRecord()->load(["id" => "example_id"]);
 print_r($parkingrecord);
 ```
 
@@ -128,12 +131,12 @@ require_relative "ParkingStgallen_sdk"
 
 client = ParkingStgallenSDK.new
 
-# List all parkingrecords
-parkingrecords = client.parkingrecord.list
+# List all parkingrecords (returns an Array; raises on error)
+parkingrecords = client.ParkingRecord.list
 puts parkingrecords
 
-# Load a specific parkingrecord
-parkingrecord = client.parkingrecord.load({ "id" => "example_id" })
+# Load a specific parkingrecord (returns the bare record; raises on error)
+parkingrecord = client.ParkingRecord.load({ "id" => "example_id" })
 puts parkingrecord
 ```
 
@@ -145,11 +148,11 @@ local sdk = require("parking-stgallen_sdk")
 local client = sdk.new()
 
 -- List all parkingrecords
-local parkingrecords, err = client:parkingrecord():list()
+local parkingrecords, err = client:ParkingRecord():list()
 print(parkingrecords)
 
 -- Load a specific parkingrecord
-local parkingrecord, err = client:parkingrecord():load({ id = "example_id" })
+local parkingrecord, err = client:ParkingRecord():load({ id = "example_id" })
 print(parkingrecord)
 ```
 
@@ -162,22 +165,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = ParkingStgallenSDK.test()
-const result = await client.parkingrecord.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const parkingrecord = await client.ParkingRecord().load({ id: 'test01' })
+// parkingrecord is a bare ParkingRecord populated with mock data
+console.log(parkingrecord)
 ```
 
 ### Python
 
 ```python
 client = ParkingStgallenSDK.test()
-result = client.parkingrecord.load({"id": "test01"})
+parkingrecord = client.ParkingRecord().load({"id": "test01"})
+print(parkingrecord)
 ```
 
 ### PHP
 
 ```php
-$client = ParkingStgallenSDK::test();
-$result = $client->parkingrecord()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = ParkingStgallenSDK::test([
+    "entity" => ["parkingrecord" => ["test01" => ["id" => "test01"]]],
+]);
+$parkingrecord = $client->ParkingRecord()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -192,15 +200,18 @@ result, err := client.ParkingRecord(nil).Load(
 ### Ruby
 
 ```ruby
-client = ParkingStgallenSDK.test
-result = client.parkingrecord.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = ParkingStgallenSDK.test({
+  "entity" => { "parkingrecord" => { "test01" => { "id" => "test01" } } },
+})
+parkingrecord = client.ParkingRecord.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:parkingrecord():load({ id = "test01" })
+local result, err = client:ParkingRecord():load({ id = "test01" })
 ```
 
 ## How it works
@@ -248,6 +259,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

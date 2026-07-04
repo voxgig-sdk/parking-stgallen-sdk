@@ -233,10 +233,10 @@ class ParkingStgallenSDK
 
     private $_parking_record = null;
 
-    // Idiomatic facade: $client->parking_record()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ParkingRecord() (PHP method
-    // names are case-insensitive).
-    public function parking_record($data = null)
+    // Canonical facade: $client->ParkingRecord()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->parking_record()
+    // resolves here too.
+    public function ParkingRecord($data = null)
     {
         require_once __DIR__ . '/entity/parking_record_entity.php';
         if ($data === null) {
