@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ParkingRecordLoadMatch
+---@param ctrl? table
+---@return ParkingRecord
+---@return string? err
 function ParkingRecordEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch ParkingRecordListMatch
+---@param ctrl? table
+---@return ParkingRecord[]
+---@return string? err
 function ParkingRecordEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -129,7 +129,6 @@ func parking_recordBasicSetup(extra map[string]any) *entityTestSetup {
 		"PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID": idmap,
 		"PARKINGSTGALLEN_TEST_LIVE":      "FALSE",
 		"PARKINGSTGALLEN_TEST_EXPLAIN":   "FALSE",
-		"PARKINGSTGALLEN_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID"])
@@ -140,7 +139,6 @@ func parking_recordBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["PARKINGSTGALLEN_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["PARKINGSTGALLEN_APIKEY"],
 			},
 			extra,
 		})

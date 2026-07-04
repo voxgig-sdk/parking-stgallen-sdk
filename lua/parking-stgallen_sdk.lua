@@ -244,6 +244,19 @@ end
 
 
 
+-- Idiomatic facade: client:parking_record():list() / client:parking_record():load({ id = ... })
+function ParkingStgallenSDK:parking_record(data)
+  local EntityMod = require("entity.parking_record_entity")
+  if data == nil then
+    if self._parking_record == nil then
+      self._parking_record = EntityMod.new(self, nil)
+    end
+    return self._parking_record
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:parking_record() instead.
 function ParkingStgallenSDK:ParkingRecord(data)
   local EntityMod = require("entity.parking_record_entity")
   return EntityMod.new(self, data)

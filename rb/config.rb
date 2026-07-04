@@ -15,9 +15,6 @@ module ParkingStgallenConfig
       },
       "options" => {
         "base" => "https://daten.stadt.sg.ch/api",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

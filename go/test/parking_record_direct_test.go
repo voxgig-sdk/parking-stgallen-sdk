@@ -170,14 +170,12 @@ func parking_recordDirectSetup(mockres any) *parking_recordDirectSetupResult {
 	env := envOverride(map[string]any{
 		"PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID": map[string]any{},
 		"PARKINGSTGALLEN_TEST_LIVE":    "FALSE",
-		"PARKINGSTGALLEN_APIKEY":       "NONE",
 	})
 
 	live := env["PARKINGSTGALLEN_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["PARKINGSTGALLEN_APIKEY"],
 		}
 		client := sdk.NewParkingStgallenSDK(mergedOpts)
 

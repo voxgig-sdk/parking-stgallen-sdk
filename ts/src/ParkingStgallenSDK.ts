@@ -2,6 +2,8 @@
 
 import { ParkingRecordEntity } from './entity/ParkingRecordEntity'
 
+export type * from './ParkingStgallenTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -202,6 +204,14 @@ class ParkingStgallenSDK {
 
 
 
+  _parking_record?: ParkingRecordEntity
+
+  // Idiomatic facade: `client.parking_record.list()` / `client.parking_record.load({ id })`.
+  get parking_record(): ParkingRecordEntity {
+    return (this._parking_record ??= new ParkingRecordEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.parking_record` instead. */
   ParkingRecord(data?: any) {
     const self = this
     return new ParkingRecordEntity(self,data)

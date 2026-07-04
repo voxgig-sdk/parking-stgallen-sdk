@@ -9,12 +9,9 @@ The Lua SDK for the ParkingStgallen API — an entity-oriented client using Lua 
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-parking-stgallen
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/parking-stgallen-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("parking-stgallen_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("PARKING-STGALLEN_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 2. List parkingrecords
 
 ```lua
-local result, err = client:ParkingRecord():list()
+local result, err = client:parkingrecord():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -53,7 +48,7 @@ end
 ### 3. Load a parkingrecord
 
 ```lua
-local result, err = client:ParkingRecord():load({ id = "example_id" })
+local result, err = client:parkingrecord():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -101,7 +96,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:ParkingStgallen():load({ id = "test01" })
+local result, err = client:parkingrecord():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -134,8 +129,7 @@ local client = sdk.new({
 Create a `.env.local` file at the project root:
 
 ```
-PARKING-STGALLEN_TEST_LIVE=TRUE
-PARKING-STGALLEN_APIKEY=<your-key>
+PARKING_STGALLEN_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -158,7 +152,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -239,7 +232,7 @@ API path: `/records/1.0/search/`
 
 ### ParkingRecord
 
-Create an instance: `const parking_record = client.ParkingRecord()`
+Create an instance: `const parking_record = client.parking_record`
 
 #### Operations
 
@@ -261,13 +254,13 @@ Create an instance: `const parking_record = client.ParkingRecord()`
 #### Example: Load
 
 ```ts
-const parking_record = await client.ParkingRecord().load({ id: 'parking_record_id' })
+const parking_record = await client.parking_record.load({ id: 'parking_record_id' })
 ```
 
 #### Example: List
 
 ```ts
-const parking_records = await client.ParkingRecord().list()
+const parking_records = await client.parking_record.list()
 ```
 
 
@@ -342,11 +335,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local parkingrecord = client:parkingrecord()
+parkingrecord:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- parkingrecord:data_get() now returns the loaded parkingrecord data
+-- parkingrecord:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

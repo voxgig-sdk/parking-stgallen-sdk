@@ -50,14 +50,12 @@ class TestParkingRecordEntity:
         parking_record_ref01_ent = client.ParkingRecord(None)
         parking_record_ref01_match = {}
 
-        parking_record_ref01_list_result, err = parking_record_ref01_ent.list(parking_record_ref01_match, None)
-        assert err is None
+        parking_record_ref01_list_result = parking_record_ref01_ent.list(parking_record_ref01_match, None)
         assert isinstance(parking_record_ref01_list_result, list)
 
         # LOAD
         parking_record_ref01_match_dt0 = {}
-        parking_record_ref01_data_dt0_loaded, err = parking_record_ref01_ent.load(parking_record_ref01_match_dt0, None)
-        assert err is None
+        parking_record_ref01_data_dt0_loaded = parking_record_ref01_ent.load(parking_record_ref01_match_dt0, None)
         assert parking_record_ref01_data_dt0_loaded is not None
 
 
@@ -98,7 +96,6 @@ def _parking_record_basic_setup(extra):
         "PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID": idmap,
         "PARKINGSTGALLEN_TEST_LIVE": "FALSE",
         "PARKINGSTGALLEN_TEST_EXPLAIN": "FALSE",
-        "PARKINGSTGALLEN_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -109,7 +106,6 @@ def _parking_record_basic_setup(extra):
     if env.get("PARKINGSTGALLEN_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("PARKINGSTGALLEN_APIKEY"),
             },
             extra or {},
         ])

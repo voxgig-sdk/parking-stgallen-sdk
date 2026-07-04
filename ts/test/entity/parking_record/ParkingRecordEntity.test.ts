@@ -119,7 +119,6 @@ function basicSetup(extra?: any) {
     'PARKING_STGALLEN_TEST_PARKING_RECORD_ENTID': idmap,
     'PARKING_STGALLEN_TEST_LIVE': 'FALSE',
     'PARKING_STGALLEN_TEST_EXPLAIN': 'FALSE',
-    'PARKING_STGALLEN_APIKEY': 'NONE',
   })
 
   idmap = env['PARKING_STGALLEN_TEST_PARKING_RECORD_ENTID']
@@ -129,7 +128,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new ParkingStgallenSDK(merge([
       {
-        apikey: env.PARKING_STGALLEN_APIKEY,
       },
       extra
     ]))
