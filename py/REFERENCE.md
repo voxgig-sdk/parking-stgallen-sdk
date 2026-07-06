@@ -8,7 +8,7 @@ Complete API reference for the ParkingStgallen Python SDK.
 ### Constructor
 
 ```python
-from parking-stgallen_sdk import ParkingStgallenSDK
+from parkingstgallen_sdk import ParkingStgallenSDK
 
 client = ParkingStgallenSDK(options)
 ```
@@ -87,20 +87,20 @@ parking_record = client.ParkingRecord()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `str` | No |  |
+| `field` | `dict` | No |  |
+| `geometry` | `dict` | No |  |
+| `record_timestamp` | `str` | No |  |
+| `recordid` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.ParkingRecord().list({})
+results = client.ParkingRecord().list()
 for parking_record in results:
     print(parking_record)
 ```
@@ -110,7 +110,7 @@ for parking_record in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.ParkingRecord().load({"id": "parking_record_id"})
+result = client.ParkingRecord().load()
 ```
 
 ### Common Methods

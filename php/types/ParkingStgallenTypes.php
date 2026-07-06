@@ -22,7 +22,7 @@ class ParkingRecord
     public ?string $recordid = null;
 }
 
-/** Match filter for ParkingRecord#load (any subset of ParkingRecord fields). */
+/** Request payload for ParkingRecord#load. */
 class ParkingRecordLoadMatch
 {
     public ?string $datasetid = null;
@@ -32,7 +32,7 @@ class ParkingRecordLoadMatch
     public ?string $recordid = null;
 }
 
-/** Match filter for ParkingRecord#list (any subset of ParkingRecord fields). */
+/** Request payload for ParkingRecord#list. */
 class ParkingRecordListMatch
 {
     public ?string $datasetid = null;

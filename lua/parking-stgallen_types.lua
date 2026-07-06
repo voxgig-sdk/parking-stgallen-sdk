@@ -14,8 +14,18 @@
 ---@field recordid? string
 
 ---@class ParkingRecordLoadMatch
+---@field datasetid? string
+---@field field? table
+---@field geometry? table
+---@field record_timestamp? string
+---@field recordid? string
 
 ---@class ParkingRecordListMatch
+---@field datasetid? string
+---@field field? table
+---@field geometry? table
+---@field record_timestamp? string
+---@field recordid? string
 
 local M = {}
 

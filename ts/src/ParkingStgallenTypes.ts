@@ -13,7 +13,19 @@ export interface ParkingRecord {
   recordid?: string
 }
 
-export type ParkingRecordLoadMatch = Partial<ParkingRecord>
+export interface ParkingRecordLoadMatch {
+  datasetid?: string
+  field?: Record<string, any>
+  geometry?: Record<string, any>
+  record_timestamp?: string
+  recordid?: string
+}
 
-export type ParkingRecordListMatch = Partial<ParkingRecord>
+export interface ParkingRecordListMatch {
+  datasetid?: string
+  field?: Record<string, any>
+  geometry?: Record<string, any>
+  record_timestamp?: string
+  recordid?: string
+}
 

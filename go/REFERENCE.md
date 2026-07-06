@@ -97,11 +97,11 @@ parking_record := client.ParkingRecord(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `string` | No |  |
+| `field` | `map[string]any` | No |  |
+| `geometry` | `map[string]any` | No |  |
+| `record_timestamp` | `string` | No |  |
+| `recordid` | `string` | No |  |
 
 ### Operations
 
@@ -118,7 +118,7 @@ results, err := client.ParkingRecord(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ParkingRecord(nil).Load(map[string]any{"id": "parking_record_id"}, nil)
+result, err := client.ParkingRecord(nil).Load(nil, nil)
 ```
 
 ### Common Methods

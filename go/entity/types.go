@@ -17,8 +17,7 @@ type ParkingRecord struct {
 	Recordid *string `json:"recordid,omitempty"`
 }
 
-// ParkingRecordLoadMatch mirrors the parking_record fields as an all-optional match
-// filter (Go analog of Partial<ParkingRecord>).
+// ParkingRecordLoadMatch is the typed request payload for ParkingRecord.LoadTyped.
 type ParkingRecordLoadMatch struct {
 	Datasetid *string `json:"datasetid,omitempty"`
 	Field *map[string]any `json:"field,omitempty"`
@@ -27,8 +26,7 @@ type ParkingRecordLoadMatch struct {
 	Recordid *string `json:"recordid,omitempty"`
 }
 
-// ParkingRecordListMatch mirrors the parking_record fields as an all-optional match
-// filter (Go analog of Partial<ParkingRecord>).
+// ParkingRecordListMatch is the typed request payload for ParkingRecord.ListTyped.
 type ParkingRecordListMatch struct {
 	Datasetid *string `json:"datasetid,omitempty"`
 	Field *map[string]any `json:"field,omitempty"`

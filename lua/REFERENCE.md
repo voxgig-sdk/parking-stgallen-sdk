@@ -90,11 +90,11 @@ local parking_record = client:ParkingRecord(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `string` | No |  |
+| `field` | `table` | No |  |
+| `geometry` | `table` | No |  |
+| `record_timestamp` | `string` | No |  |
+| `recordid` | `string` | No |  |
 
 ### Operations
 
@@ -111,7 +111,7 @@ local results, err = client:ParkingRecord():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ParkingRecord():load({ id = "parking_record_id" })
+local result, err = client:ParkingRecord():load()
 ```
 
 ### Common Methods

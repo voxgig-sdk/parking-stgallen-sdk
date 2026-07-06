@@ -221,7 +221,7 @@ class ParkingStgallenSDK:
 
 
     def ParkingRecord(self, data=None) -> "ParkingRecordEntity":
-        """Entity factory: client.ParkingRecord().list({}) / client.ParkingRecord().load({"id": ...})."""
+        """Entity factory: client.ParkingRecord().list() / client.ParkingRecord().load({"id": ...})."""
         from entity.parking_record_entity import ParkingRecordEntity
         return ParkingRecordEntity(self, data)
 

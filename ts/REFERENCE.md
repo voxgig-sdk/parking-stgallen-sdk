@@ -116,11 +116,11 @@ const parking_record = client.ParkingRecord()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | ``$STRING`` | No |  |
-| `field` | ``$OBJECT`` | No |  |
-| `geometry` | ``$OBJECT`` | No |  |
-| `record_timestamp` | ``$STRING`` | No |  |
-| `recordid` | ``$STRING`` | No |  |
+| `datasetid` | `string` | No |  |
+| `field` | `Record<string, any>` | No |  |
+| `geometry` | `Record<string, any>` | No |  |
+| `record_timestamp` | `string` | No |  |
+| `recordid` | `string` | No |  |
 
 ### Operations
 
@@ -137,7 +137,7 @@ const results = await client.ParkingRecord().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ParkingRecord().load({ id: 'parking_record_id' })
+const result = await client.ParkingRecord().load()
 ```
 
 ### Common Methods
