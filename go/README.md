@@ -50,21 +50,21 @@ import (
 func main() {
     client := sdk.New()
 
-    // List parkingrecord records — the value is the array of records itself.
-    parkingrecords, err := client.ParkingRecord(nil).List(nil, nil)
+    // List parkingRecord records — the value is the array of records itself.
+    parkingRecords, err := client.ParkingRecord(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-    for _, item := range parkingrecords.([]any) {
+    for _, item := range parkingRecords.([]any) {
         fmt.Println(item)
     }
 
-    // Load a single parkingrecord — the value is the loaded record.
-    parkingrecord, err := client.ParkingRecord(nil).Load(nil, nil)
+    // Load a single parkingRecord — the value is the loaded record.
+    parkingRecord, err := client.ParkingRecord(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(parkingrecord)
+    fmt.Println(parkingRecord)
 }
 ```
 
@@ -144,13 +144,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-parkingrecord, err := client.ParkingRecord(nil).List(
+parkingRecord, err := client.ParkingRecord(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(parkingrecord) // the returned mock data
+fmt.Println(parkingRecord) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -256,9 +256,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    parkingrecord, err := client.ParkingRecord(nil).List(map[string]any{/* fields */}, nil)
+    parkingRecord, err := client.ParkingRecord(nil).List(map[string]any{/* fields */}, nil)
     if err != nil { /* handle */ }
-    // parkingrecord is the returned record
+    // parkingRecord is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -286,7 +286,7 @@ API path: `/records/1.0/search/`
 
 ### ParkingRecord
 
-Create an instance: `parking_record := client.ParkingRecord(nil)`
+Create an instance: `parkingRecord := client.ParkingRecord(nil)`
 
 #### Operations
 
@@ -308,21 +308,21 @@ Create an instance: `parking_record := client.ParkingRecord(nil)`
 #### Example: Load
 
 ```go
-parking_record, err := client.ParkingRecord(nil).Load(nil, nil)
+parkingRecord, err := client.ParkingRecord(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(parking_record) // the loaded record
+fmt.Println(parkingRecord) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-parking_records, err := client.ParkingRecord(nil).List(nil, nil)
+parkingRecords, err := client.ParkingRecord(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(parking_records) // the array of records
+fmt.Println(parkingRecords) // the array of records
 ```
 
 

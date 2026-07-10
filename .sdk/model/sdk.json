@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -423,14 +420,17 @@
           "url": "https://daten.stadt.sg.ch"
         },
         "description": "Allows searching and downloading parking records in Stadt St.Gallen with various parameters. Data includes parking locations, availability, occupancy, and more. The PLS Parkleitsystem St.Gallen AG measures available parking spaces in parking garages in the city of St.Gallen in real-time.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "St.Gallen Open Data Portal API",
             "url": "https://daten.stadt.sg.ch/api"
           }
         ],
+        "summary": "Allows searching and downloading parking records in Stadt St.Gallen with various parameters.",
         "title": "Parking St.Gallen API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://daten.stadt.sg.ch/explore/dataset/freie-parkplatze-in-der-stadt-stgallen-pls/api/"
       },
       "option": {},
       "target": {
@@ -483,6 +483,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -533,6 +536,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

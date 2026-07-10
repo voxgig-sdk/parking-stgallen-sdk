@@ -15,9 +15,9 @@ main: {
           url: "https://daten.stadt.sg.ch/api"
         }
       ]
+      summary: "Allows searching and downloading parking records in Stadt St.Gallen with various parameters."
       title: "Parking St.Gallen API"
       version: "1.0.0"
+      website: "https://daten.stadt.sg.ch/explore/dataset/freie-parkplatze-in-der-stadt-stgallen-pls/api/"
     }
   }
-}
-
