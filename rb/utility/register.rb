@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ ParkingStgallenUtility.registrar = ->(u) {
   u.prepare_params = ParkingStgallenUtilities::PrepareParams
   u.prepare_path = ParkingStgallenUtilities::PreparePath
   u.prepare_query = ParkingStgallenUtilities::PrepareQuery
+  u.graphql_body = ParkingStgallenUtilities::GraphqlBody
+  u.graphql_errors = ParkingStgallenUtilities::GraphqlErrors
   u.result_basic = ParkingStgallenUtilities::ResultBasic
   u.result_body = ParkingStgallenUtilities::ResultBody
   u.result_headers = ParkingStgallenUtilities::ResultHeaders

@@ -270,7 +270,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"datasetid"` |  |
-| `"field"` |  |
+| `"fields"` |  |
 | `"geometry"` |  |
 | `"record_timestamp"` |  |
 | `"recordid"` |  |
@@ -300,7 +300,7 @@ Create an instance: `parkingRecord := client.ParkingRecord(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `string` |  |
-| `field` | `map[string]any` |  |
+| `fields` | `map[string]any` |  |
 | `geometry` | `map[string]any` |  |
 | `record_timestamp` | `string` |  |
 | `recordid` | `string` |  |

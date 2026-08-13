@@ -48,7 +48,7 @@ end
 
 ```ruby
 begin
-  # load returns the bare ParkingRecord record (raises on error).
+  # load returns the ENTITY — call data_get for the ParkingRecord record (raises on error).
   parkingrecord = client.ParkingRecord.load()
   puts parkingrecord
 rescue => err
@@ -131,7 +131,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = ParkingStgallenSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 parkingrecord = client.ParkingRecord.list()
 puts parkingrecord
 ```
@@ -250,7 +251,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -280,7 +281,7 @@ Create an instance: `parking_record = client.ParkingRecord`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `String` |  |
-| `field` | `Hash` |  |
+| `fields` | `Hash` |  |
 | `geometry` | `Hash` |  |
 | `record_timestamp` | `String` |  |
 | `recordid` | `String` |  |
@@ -288,7 +289,7 @@ Create an instance: `parking_record = client.ParkingRecord`
 #### Example: Load
 
 ```ruby
-# load returns the bare ParkingRecord record (raises on error).
+# load returns the ENTITY — call data_get for the ParkingRecord record (raises on error).
 parking_record = client.ParkingRecord.load()
 ```
 

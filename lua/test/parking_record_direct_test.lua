@@ -111,11 +111,11 @@ function parking_record_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID"] = {},
-    ["PARKINGSTGALLEN_TEST_LIVE"] = "FALSE",
+    ["PARKING_STGALLEN_TEST_PARKING_RECORD_ENTID"] = {},
+    ["PARKING_STGALLEN_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["PARKINGSTGALLEN_TEST_LIVE"] == "TRUE"
+  local live = env["PARKING_STGALLEN_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

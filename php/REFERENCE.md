@@ -93,7 +93,7 @@ $parking_record = $client->ParkingRecord();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `string` | No |  |
-| `field` | `array` | No |  |
+| `fields` | `array` | No |  |
 | `geometry` | `array` | No |  |
 | `record_timestamp` | `string` | No |  |
 | `recordid` | `string` | No |  |

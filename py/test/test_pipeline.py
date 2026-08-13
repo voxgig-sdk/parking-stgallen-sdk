@@ -16,11 +16,11 @@
 import pytest
 
 from parkingstgallen_sdk import ParkingStgallenSDK
-from core.error import ParkingStgallenError
-from core.result import ParkingStgallenResult
-from core.response import ParkingStgallenResponse
-from core.spec import ParkingStgallenSpec
-from feature.base_feature import ParkingStgallenBaseFeature
+from parkingstgallen_sdk.core.error import ParkingStgallenError
+from parkingstgallen_sdk.core.result import ParkingStgallenResult
+from parkingstgallen_sdk.core.response import ParkingStgallenResponse
+from parkingstgallen_sdk.core.spec import ParkingStgallenSpec
+from parkingstgallen_sdk.feature.base_feature import ParkingStgallenBaseFeature
 
 
 def _client():

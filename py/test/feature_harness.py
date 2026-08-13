@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import ParkingStgallenControl
-from core.error import ParkingStgallenError
-from core.result import ParkingStgallenResult
-from core.spec import ParkingStgallenSpec
+from parkingstgallen_sdk.config import make_config
+from parkingstgallen_sdk.features import _make_feature
+from parkingstgallen_sdk.core.control import ParkingStgallenControl
+from parkingstgallen_sdk.core.error import ParkingStgallenError
+from parkingstgallen_sdk.core.result import ParkingStgallenResult
+from parkingstgallen_sdk.core.spec import ParkingStgallenSpec
 
 
 # True when this SDK was generated with the named feature.

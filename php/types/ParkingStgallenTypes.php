@@ -16,7 +16,7 @@ declare(strict_types=1);
 class ParkingRecord
 {
     public ?string $datasetid = null;
-    public ?array $field = null;
+    public ?array $fields = null;
     public ?array $geometry = null;
     public ?string $record_timestamp = null;
     public ?string $recordid = null;
@@ -26,7 +26,7 @@ class ParkingRecord
 class ParkingRecordLoadMatch
 {
     public ?string $datasetid = null;
-    public ?array $field = null;
+    public ?array $fields = null;
     public ?array $geometry = null;
     public ?string $record_timestamp = null;
     public ?string $recordid = null;
@@ -36,7 +36,7 @@ class ParkingRecordLoadMatch
 class ParkingRecordListMatch
 {
     public ?string $datasetid = null;
-    public ?array $field = null;
+    public ?array $fields = null;
     public ?array $geometry = null;
     public ?string $record_timestamp = null;
     public ?string $recordid = null;

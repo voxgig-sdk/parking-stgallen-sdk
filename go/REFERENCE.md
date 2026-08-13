@@ -99,7 +99,7 @@ fmt.Println(parkingRecord.GetName()) // "parking_record"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `string` | No |  |
-| `field` | `map[string]any` | No |  |
+| `fields` | `map[string]any` | No |  |
 | `geometry` | `map[string]any` | No |  |
 | `record_timestamp` | `string` | No |  |
 | `recordid` | `string` | No |  |

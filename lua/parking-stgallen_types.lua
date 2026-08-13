@@ -8,21 +8,21 @@
 
 ---@class ParkingRecord
 ---@field datasetid? string
----@field field? table
+---@field fields? table
 ---@field geometry? table
 ---@field record_timestamp? string
 ---@field recordid? string
 
 ---@class ParkingRecordLoadMatch
 ---@field datasetid? string
----@field field? table
+---@field fields? table
 ---@field geometry? table
 ---@field record_timestamp? string
 ---@field recordid? string
 
 ---@class ParkingRecordListMatch
 ---@field datasetid? string
----@field field? table
+---@field fields? table
 ---@field geometry? table
 ---@field record_timestamp? string
 ---@field recordid? string

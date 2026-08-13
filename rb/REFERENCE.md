@@ -94,7 +94,7 @@ parking_record = client.ParkingRecord
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `String` | No |  |
-| `field` | `Hash` | No |  |
+| `fields` | `Hash` | No |  |
 | `geometry` | `Hash` | No |  |
 | `record_timestamp` | `String` | No |  |
 | `recordid` | `String` | No |  |

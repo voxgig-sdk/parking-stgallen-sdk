@@ -39,7 +39,7 @@ class ParkingStgallenConfig
             ],
             [
               'active' => true,
-              'name' => 'field',
+              'name' => 'fields',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 1,
@@ -188,6 +188,7 @@ class ParkingStgallenConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/records/1.0/search/',
                   'parts' => [
@@ -258,6 +259,7 @@ class ParkingStgallenConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/records/1.0/download/',
                   'parts' => [

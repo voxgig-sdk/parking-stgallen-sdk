@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = ParkingStgallenSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = ParkingStgallenSDK.test({
+  entity: {
+    parking_record: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const parkingrecords = await client.ParkingRecord().list()
-// parkingrecords is an array of bare ParkingRecord records populated with mock data
+// parkingrecords is an array of ParkingRecord entities, populated with mock data
+// — call parkingrecords[0].data() for the record itself
 console.log(parkingrecords)
 ```
 
@@ -110,7 +119,7 @@ import { ParkingStgallenSDK } from '@voxgig-sdk/parking-stgallen'
 
 const client = new ParkingStgallenSDK()
 
-// List all parkingrecords (returns ParkingRecord[])
+// List all parkingrecords (returns ParkingRecordEntity[] — .data() for the record)
 const parkingrecords = await client.ParkingRecord().list()
 for (const parkingrecord of parkingrecords) {
   console.log(parkingrecord)
@@ -191,7 +200,7 @@ $client = new ParkingStgallenSDK();
 $parkingrecords = $client->ParkingRecord()->list();
 print_r($parkingrecords);
 
-// Load a specific parkingrecord (returns the bare record; throws on error)
+// Load a specific parkingrecord (returns the ENTITY; call data_get() for the record; throws on error)
 $parkingrecord = $client->ParkingRecord()->load();
 print_r($parkingrecord);
 ```
@@ -222,7 +231,7 @@ client = ParkingStgallenSDK.new
 parkingrecords = client.ParkingRecord.list
 puts parkingrecords
 
-# Load a specific parkingrecord (returns the bare record; raises on error)
+# Load a specific parkingrecord (returns the ENTITY; call data_get for the record)
 parkingrecord = client.ParkingRecord.load()
 puts parkingrecord
 ```
@@ -359,6 +368,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://daten.stadt.sg.ch](https://daten.stadt.sg.ch)
 

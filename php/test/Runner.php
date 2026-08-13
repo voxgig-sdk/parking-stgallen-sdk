@@ -43,8 +43,8 @@ class ParkingStgallenTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('PARKINGSTGALLEN_TEST_LIVE');
-        $override = self::getenv('PARKINGSTGALLEN_TEST_OVERRIDE');
+        $live = self::getenv('PARKING_STGALLEN_TEST_LIVE');
+        $override = self::getenv('PARKING_STGALLEN_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class ParkingStgallenTestRunner
             }
         }
 
-        $explain = self::getenv('PARKINGSTGALLEN_TEST_EXPLAIN');
+        $explain = self::getenv('PARKING_STGALLEN_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['PARKINGSTGALLEN_TEST_EXPLAIN'] = $explain;
+            $m['PARKING_STGALLEN_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

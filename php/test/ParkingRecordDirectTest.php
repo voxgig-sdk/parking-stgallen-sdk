@@ -117,11 +117,11 @@ function parking_record_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID" => [],
-        "PARKINGSTGALLEN_TEST_LIVE" => "FALSE",
+        "PARKING_STGALLEN_TEST_PARKING_RECORD_ENTID" => [],
+        "PARKING_STGALLEN_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["PARKINGSTGALLEN_TEST_LIVE"] === "TRUE";
+    $live = $env["PARKING_STGALLEN_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

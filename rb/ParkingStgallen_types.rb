@@ -13,7 +13,7 @@
 # @!attribute [rw] datasetid
 #   @return [String, nil]
 #
-# @!attribute [rw] field
+# @!attribute [rw] fields
 #   @return [Hash, nil]
 #
 # @!attribute [rw] geometry
@@ -26,7 +26,7 @@
 #   @return [String, nil]
 ParkingRecord = Struct.new(
   :datasetid,
-  :field,
+  :fields,
   :geometry,
   :record_timestamp,
   :recordid,
@@ -38,7 +38,7 @@ ParkingRecord = Struct.new(
 # @!attribute [rw] datasetid
 #   @return [String, nil]
 #
-# @!attribute [rw] field
+# @!attribute [rw] fields
 #   @return [Hash, nil]
 #
 # @!attribute [rw] geometry
@@ -51,7 +51,7 @@ ParkingRecord = Struct.new(
 #   @return [String, nil]
 ParkingRecordLoadMatch = Struct.new(
   :datasetid,
-  :field,
+  :fields,
   :geometry,
   :record_timestamp,
   :recordid,
@@ -63,7 +63,7 @@ ParkingRecordLoadMatch = Struct.new(
 # @!attribute [rw] datasetid
 #   @return [String, nil]
 #
-# @!attribute [rw] field
+# @!attribute [rw] fields
 #   @return [Hash, nil]
 #
 # @!attribute [rw] geometry
@@ -76,7 +76,7 @@ ParkingRecordLoadMatch = Struct.new(
 #   @return [String, nil]
 ParkingRecordListMatch = Struct.new(
   :datasetid,
-  :field,
+  :fields,
   :geometry,
   :record_timestamp,
   :recordid,

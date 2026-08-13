@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from parkingstgallen_sdk.utility.voxgig_struct import voxgig_struct as vs
 from parkingstgallen_sdk import ParkingStgallenSDK
-from core import helpers
+from parkingstgallen_sdk.core import helpers
 from test import runner
 
 
@@ -100,11 +100,11 @@ def _parking_record_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "PARKINGSTGALLEN_TEST_PARKING_RECORD_ENTID": {},
-        "PARKINGSTGALLEN_TEST_LIVE": "FALSE",
+        "PARKING_STGALLEN_TEST_PARKING_RECORD_ENTID": {},
+        "PARKING_STGALLEN_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("PARKINGSTGALLEN_TEST_LIVE") == "TRUE"
+    live = env.get("PARKING_STGALLEN_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

@@ -23,8 +23,8 @@ module ParkingStgallenTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("PARKINGSTGALLEN_TEST_LIVE")
-    override = getenv("PARKINGSTGALLEN_TEST_OVERRIDE")
+    live = getenv("PARKING_STGALLEN_TEST_LIVE")
+    override = getenv("PARKING_STGALLEN_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module ParkingStgallenTestRunner
       end
     end
 
-    explain = getenv("PARKINGSTGALLEN_TEST_EXPLAIN")
-    m["PARKINGSTGALLEN_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("PARKING_STGALLEN_TEST_EXPLAIN")
+    m["PARKING_STGALLEN_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

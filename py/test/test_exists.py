@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# ParkingStgallen SDK exists test
 
 import pytest
 from parkingstgallen_sdk import ParkingStgallenSDK

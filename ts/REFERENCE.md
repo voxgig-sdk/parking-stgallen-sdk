@@ -117,7 +117,7 @@ const parking_record = client.ParkingRecord()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `datasetid` | `string` | No |  |
-| `field` | `Record<string, any>` | No |  |
+| `fields` | `Record<string, any>` | No |  |
 | `geometry` | `Record<string, any>` | No |  |
 | `record_timestamp` | `string` | No |  |
 | `recordid` | `string` | No |  |

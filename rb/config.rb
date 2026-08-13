@@ -34,7 +34,7 @@ module ParkingStgallenConfig
             },
             {
               "active" => true,
-              "name" => "field",
+              "name" => "fields",
               "req" => false,
               "type" => "`$OBJECT`",
               "index$" => 1,
@@ -183,6 +183,7 @@ module ParkingStgallenConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/records/1.0/search/",
                   "parts" => [
@@ -253,6 +254,7 @@ module ParkingStgallenConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/records/1.0/download/",
                   "parts" => [

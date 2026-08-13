@@ -26,8 +26,8 @@ import {
 describe('ParkingRecordEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when PARKINGSTGALLEN_TEST_LIVE=TRUE.
-  afterEach(liveDelay('PARKINGSTGALLEN_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when PARKING_STGALLEN_TEST_LIVE=TRUE.
+  afterEach(liveDelay('PARKING_STGALLEN_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = ParkingStgallenSDK.test()
@@ -63,12 +63,12 @@ describe('ParkingRecordEntity', async () => {
     const parking_record_ref01_ent = client.ParkingRecord()
     const parking_record_ref01_match: any = {}
 
-    const parking_record_ref01_list = await parking_record_ref01_ent.list(parking_record_ref01_match)
+    const parking_record_ref01_list = (await parking_record_ref01_ent.list(parking_record_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const parking_record_ref01_match_dt0: any = {}
-    const parking_record_ref01_data_dt0 = await parking_record_ref01_ent.load(parking_record_ref01_match_dt0)
+    const parking_record_ref01_data_dt0 = (await parking_record_ref01_ent.load(parking_record_ref01_match_dt0)).data()
     assert(null != parking_record_ref01_data_dt0)
 
 

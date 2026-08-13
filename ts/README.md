@@ -35,7 +35,9 @@ const client = new ParkingStgallenSDK()
 
 ### 2. List parkingrecord records
 
-`list()` resolves to an array of ParkingRecord objects — iterate it directly:
+`list()` resolves to an array of ParkingRecord ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const parkingrecords = await client.ParkingRecord().list()
@@ -133,7 +135,8 @@ Create a mock client for unit testing — no server required:
 const client = ParkingStgallenSDK.test()
 
 const parkingrecord = await client.ParkingRecord().list()
-// parkingrecord is a bare entity populated with mock response data
+// parkingrecord is the entity, populated with mock response data
+// — call parkingrecord.data() for the record itself
 console.log(parkingrecord)
 ```
 
@@ -300,7 +303,7 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -330,7 +333,7 @@ Create an instance: `const parking_record = client.ParkingRecord()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `string` |  |
-| `field` | `Record<string, any>` |  |
+| `fields` | `Record<string, any>` |  |
 | `geometry` | `Record<string, any>` |  |
 | `record_timestamp` | `string` |  |
 | `recordid` | `string` |  |

@@ -242,7 +242,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `datasetid` |  |
-| `field` |  |
+| `fields` |  |
 | `geometry` |  |
 | `record_timestamp` |  |
 | `recordid` |  |
@@ -272,7 +272,7 @@ Create an instance: `local parking_record = client:ParkingRecord(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `datasetid` | `string` |  |
-| `field` | `table` |  |
+| `fields` | `table` |  |
 | `geometry` | `table` |  |
 | `record_timestamp` | `string` |  |
 | `recordid` | `string` |  |

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'ParkingStgallen',
   }
 
 
@@ -63,7 +63,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "field",
+          "name": "fields",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 1
@@ -212,6 +212,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/records/1.0/search/",
               "parts": [
@@ -282,6 +283,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/records/1.0/download/",
               "parts": [

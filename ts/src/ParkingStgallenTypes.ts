@@ -7,7 +7,7 @@
 
 export interface ParkingRecord {
   datasetid?: string
-  field?: Record<string, any>
+  fields?: Record<string, any>
   geometry?: Record<string, any>
   record_timestamp?: string
   recordid?: string
@@ -15,7 +15,7 @@ export interface ParkingRecord {
 
 export interface ParkingRecordLoadMatch {
   datasetid?: string
-  field?: Record<string, any>
+  fields?: Record<string, any>
   geometry?: Record<string, any>
   record_timestamp?: string
   recordid?: string
@@ -23,7 +23,7 @@ export interface ParkingRecordLoadMatch {
 
 export interface ParkingRecordListMatch {
   datasetid?: string
-  field?: Record<string, any>
+  fields?: Record<string, any>
   geometry?: Record<string, any>
   record_timestamp?: string
   recordid?: string
