@@ -15,7 +15,7 @@ require_relative "../ParkingStgallen_sdk"
 module ParkingStgallenFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = ParkingStgallenConfig.make_config["feature"]
+    f = ParkingStgallenConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

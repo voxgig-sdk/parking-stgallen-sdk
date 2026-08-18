@@ -28,7 +28,7 @@ class ParkingStgallenSDK
     utility = ParkingStgallenUtility.new
     @_utility = utility
 
-    config = ParkingStgallenConfig.make_config
+    config = ParkingStgallenConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

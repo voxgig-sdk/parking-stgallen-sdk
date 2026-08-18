@@ -40,7 +40,7 @@ class ParkingStgallenSDK
         $utility = new ParkingStgallenUtility();
         $this->_utility = $utility;
 
-        $config = ParkingStgallenConfig::make_config();
+        $config = ParkingStgallenConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
