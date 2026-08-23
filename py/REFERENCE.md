@@ -87,11 +87,11 @@ parking_record = client.ParkingRecord()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `str` | No |  |
+| `datasetid` | `str` | No | Dataset identifier |
 | `fields` | `dict` | No |  |
-| `geometry` | `dict` | No |  |
-| `record_timestamp` | `str` | No |  |
-| `recordid` | `str` | No |  |
+| `geometry` | `dict` | No | GeoJSON geometry |
+| `record_timestamp` | `str` | No | Record processing timestamp |
+| `recordid` | `str` | No | Unique record identifier |
 
 ### Operations
 

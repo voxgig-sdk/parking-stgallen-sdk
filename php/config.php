@@ -33,6 +33,9 @@ class ParkingStgallenConfig
         return [
             "main" => [
                 "name" => "ParkingStgallen",
+                "slug" => "parking-stgallen",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -55,6 +58,7 @@ class ParkingStgallenConfig
           'fields' => [
             [
               'name' => 'datasetid',
+              'short' => 'Dataset identifier',
               'type' => '`$STRING`',
             ],
             [
@@ -63,14 +67,17 @@ class ParkingStgallenConfig
             ],
             [
               'name' => 'geometry',
+              'short' => 'GeoJSON geometry',
               'type' => '`$OBJECT`',
             ],
             [
               'name' => 'record_timestamp',
+              'short' => 'Record processing timestamp',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'recordid',
+              'short' => 'Unique record identifier',
               'type' => '`$STRING`',
             ],
           ],

@@ -93,11 +93,11 @@ parking_record = client.ParkingRecord
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `String` | No |  |
+| `datasetid` | `String` | No | Dataset identifier |
 | `fields` | `Hash` | No |  |
-| `geometry` | `Hash` | No |  |
-| `record_timestamp` | `String` | No |  |
-| `recordid` | `String` | No |  |
+| `geometry` | `Hash` | No | GeoJSON geometry |
+| `record_timestamp` | `String` | No | Record processing timestamp |
+| `recordid` | `String` | No | Unique record identifier |
 
 ### Operations
 

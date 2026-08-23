@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -302,11 +302,11 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry |
+| `record_timestamp` | Record processing timestamp |
+| `recordid` | Unique record identifier |
 
 Operations: list, load.
 
@@ -332,11 +332,11 @@ Create an instance: `const parking_record = client.ParkingRecord()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `Record<string, any>` |  |
-| `geometry` | `Record<string, any>` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `Record<string, any>` | GeoJSON geometry |
+| `record_timestamp` | `string` | Record processing timestamp |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: Load
 

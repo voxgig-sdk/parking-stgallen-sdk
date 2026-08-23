@@ -241,11 +241,11 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry |
+| `record_timestamp` | Record processing timestamp |
+| `recordid` | Unique record identifier |
 
 Operations: List, Load.
 
@@ -271,11 +271,11 @@ Create an instance: `local parking_record = client:ParkingRecord(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `table` |  |
-| `geometry` | `table` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `table` | GeoJSON geometry |
+| `record_timestamp` | `string` | Record processing timestamp |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: Load
 

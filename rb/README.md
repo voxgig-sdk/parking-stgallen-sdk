@@ -250,11 +250,11 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry |
+| `record_timestamp` | Record processing timestamp |
+| `recordid` | Unique record identifier |
 
 Operations: List, Load.
 
@@ -280,11 +280,11 @@ Create an instance: `parking_record = client.ParkingRecord`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `String` |  |
+| `datasetid` | `String` | Dataset identifier |
 | `fields` | `Hash` |  |
-| `geometry` | `Hash` |  |
-| `record_timestamp` | `String` |  |
-| `recordid` | `String` |  |
+| `geometry` | `Hash` | GeoJSON geometry |
+| `record_timestamp` | `String` | Record processing timestamp |
+| `recordid` | `String` | Unique record identifier |
 
 #### Example: Load
 

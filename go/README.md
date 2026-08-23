@@ -6,7 +6,7 @@ The Golang SDK for the ParkingStgallen API — an entity-oriented client using s
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.ParkingRecord(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -269,11 +269,11 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"datasetid"` |  |
+| `"datasetid"` | Dataset identifier |
 | `"fields"` |  |
-| `"geometry"` |  |
-| `"record_timestamp"` |  |
-| `"recordid"` |  |
+| `"geometry"` | GeoJSON geometry |
+| `"record_timestamp"` | Record processing timestamp |
+| `"recordid"` | Unique record identifier |
 
 Operations: List, Load.
 
@@ -299,11 +299,11 @@ Create an instance: `parkingRecord := client.ParkingRecord(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `map[string]any` |  |
-| `geometry` | `map[string]any` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `map[string]any` | GeoJSON geometry |
+| `record_timestamp` | `string` | Record processing timestamp |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: Load
 

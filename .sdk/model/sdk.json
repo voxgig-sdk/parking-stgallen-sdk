@@ -36,6 +36,7 @@
               "active": true,
               "name": "datasetid",
               "req": false,
+              "short": "Dataset identifier",
               "type": "`$STRING`"
             },
             {
@@ -48,18 +49,21 @@
               "active": true,
               "name": "geometry",
               "req": false,
+              "short": "GeoJSON geometry",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "record_timestamp",
               "req": false,
+              "short": "Record processing timestamp",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "recordid",
               "req": false,
+              "short": "Unique record identifier",
               "type": "`$STRING`"
             }
           ],

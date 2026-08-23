@@ -92,11 +92,11 @@ $parking_record = $client->ParkingRecord();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `string` | No |  |
+| `datasetid` | `string` | No | Dataset identifier |
 | `fields` | `array` | No |  |
-| `geometry` | `array` | No |  |
-| `record_timestamp` | `string` | No |  |
-| `recordid` | `string` | No |  |
+| `geometry` | `array` | No | GeoJSON geometry |
+| `record_timestamp` | `string` | No | Record processing timestamp |
+| `recordid` | `string` | No | Unique record identifier |
 
 ### Operations
 

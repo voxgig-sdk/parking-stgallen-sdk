@@ -256,11 +256,11 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry |
+| `record_timestamp` | Record processing timestamp |
+| `recordid` | Unique record identifier |
 
 Operations: List, Load.
 
@@ -286,11 +286,11 @@ Create an instance: `parking_record = client.ParkingRecord()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `str` |  |
+| `datasetid` | `str` | Dataset identifier |
 | `fields` | `dict` |  |
-| `geometry` | `dict` |  |
-| `record_timestamp` | `str` |  |
-| `recordid` | `str` |  |
+| `geometry` | `dict` | GeoJSON geometry |
+| `record_timestamp` | `str` | Record processing timestamp |
+| `recordid` | `str` | Unique record identifier |
 
 #### Example: Load
 

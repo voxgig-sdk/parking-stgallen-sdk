@@ -98,11 +98,11 @@ fmt.Println(parkingRecord.GetName()) // "parking_record"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `datasetid` | `string` | No |  |
+| `datasetid` | `string` | No | Dataset identifier |
 | `fields` | `map[string]any` | No |  |
-| `geometry` | `map[string]any` | No |  |
-| `record_timestamp` | `string` | No |  |
-| `recordid` | `string` | No |  |
+| `geometry` | `map[string]any` | No | GeoJSON geometry |
+| `record_timestamp` | `string` | No | Record processing timestamp |
+| `recordid` | `string` | No | Unique record identifier |
 
 ### Operations
 

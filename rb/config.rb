@@ -19,6 +19,9 @@ module ParkingStgallenConfig
     {
       "main" => {
         "name" => "ParkingStgallen",
+        "slug" => "parking-stgallen",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -41,6 +44,7 @@ module ParkingStgallenConfig
           "fields" => [
             {
               "name" => "datasetid",
+              "short" => "Dataset identifier",
               "type" => "`$STRING`",
             },
             {
@@ -49,14 +53,17 @@ module ParkingStgallenConfig
             },
             {
               "name" => "geometry",
+              "short" => "GeoJSON geometry",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "record_timestamp",
+              "short" => "Record processing timestamp",
               "type" => "`$STRING`",
             },
             {
               "name" => "recordid",
+              "short" => "Unique record identifier",
               "type" => "`$STRING`",
             },
           ],

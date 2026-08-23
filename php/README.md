@@ -260,11 +260,11 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `datasetid` |  |
+| `datasetid` | Dataset identifier |
 | `fields` |  |
-| `geometry` |  |
-| `record_timestamp` |  |
-| `recordid` |  |
+| `geometry` | GeoJSON geometry |
+| `record_timestamp` | Record processing timestamp |
+| `recordid` | Unique record identifier |
 
 Operations: List, Load.
 
@@ -290,11 +290,11 @@ Create an instance: `$parking_record = $client->ParkingRecord();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `datasetid` | `string` |  |
+| `datasetid` | `string` | Dataset identifier |
 | `fields` | `array` |  |
-| `geometry` | `array` |  |
-| `record_timestamp` | `string` |  |
-| `recordid` | `string` |  |
+| `geometry` | `array` | GeoJSON geometry |
+| `record_timestamp` | `string` | Record processing timestamp |
+| `recordid` | `string` | Unique record identifier |
 
 #### Example: Load
 
