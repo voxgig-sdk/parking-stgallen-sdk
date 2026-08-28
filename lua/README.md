@@ -50,7 +50,7 @@ end
 ### 3. Load a parkingrecord
 
 ```lua
-local parkingrecord, err = client:ParkingRecord():load()
+local parkingrecord, err = client:ParkingRecord():load({ dataset = "example_dataset" })
 if err then error(err) end
 print(parkingrecord)
 ```
@@ -280,7 +280,7 @@ Create an instance: `local parking_record = client:ParkingRecord(nil)`
 #### Example: Load
 
 ```lua
-local parking_record, err = client:ParkingRecord():load()
+local parking_record, err = client:ParkingRecord():load({ dataset = "dataset" })
 ```
 
 #### Example: List
@@ -288,6 +288,29 @@ local parking_record, err = client:ParkingRecord():load()
 ```lua
 local parking_records, err = client:ParkingRecord():list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

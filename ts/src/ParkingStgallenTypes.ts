@@ -14,18 +14,24 @@ export interface ParkingRecord {
 }
 
 export interface ParkingRecordLoadMatch {
-  datasetid?: string
-  fields?: Record<string, any>
-  geometry?: Record<string, any>
-  record_timestamp?: string
-  recordid?: string
+  dataset: string
+  format?: string
+  timezone?: string
 }
 
 export interface ParkingRecordListMatch {
-  datasetid?: string
-  fields?: Record<string, any>
-  geometry?: Record<string, any>
-  record_timestamp?: string
-  recordid?: string
+  dataset: string
+  exclude_phid?: string
+  exclude_phname?: string
+  facet?: any[]
+  format?: string
+  lang?: string
+  q?: string
+  refine_phid?: string
+  refine_phname?: string
+  row?: number
+  sort?: string
+  start?: number
+  timezone?: string
 }
 

@@ -25,20 +25,26 @@ class ParkingRecord
 /** Request payload for ParkingRecord#load. */
 class ParkingRecordLoadMatch
 {
-    public ?string $datasetid = null;
-    public ?array $fields = null;
-    public ?array $geometry = null;
-    public ?string $record_timestamp = null;
-    public ?string $recordid = null;
+    public string $dataset;
+    public ?string $format = null;
+    public ?string $timezone = null;
 }
 
 /** Request payload for ParkingRecord#list. */
 class ParkingRecordListMatch
 {
-    public ?string $datasetid = null;
-    public ?array $fields = null;
-    public ?array $geometry = null;
-    public ?string $record_timestamp = null;
-    public ?string $recordid = null;
+    public string $dataset;
+    public ?string $exclude_phid = null;
+    public ?string $exclude_phname = null;
+    public ?array $facet = null;
+    public ?string $format = null;
+    public ?string $lang = null;
+    public ?string $q = null;
+    public ?string $refine_phid = null;
+    public ?string $refine_phname = null;
+    public ?int $row = null;
+    public ?string $sort = null;
+    public ?int $start = null;
+    public ?string $timezone = null;
 }
 

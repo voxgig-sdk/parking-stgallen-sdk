@@ -23,20 +23,26 @@ type ParkingRecord struct {
 
 // ParkingRecordLoadMatch is the typed request payload for ParkingRecord.LoadTyped.
 type ParkingRecordLoadMatch struct {
-	Datasetid *string `json:"datasetid,omitempty"`
-	Fields *map[string]any `json:"fields,omitempty"`
-	Geometry *map[string]any `json:"geometry,omitempty"`
-	RecordTimestamp *string `json:"record_timestamp,omitempty"`
-	Recordid *string `json:"recordid,omitempty"`
+	Dataset string `json:"dataset"`
+	Format *string `json:"format,omitempty"`
+	Timezone *string `json:"timezone,omitempty"`
 }
 
 // ParkingRecordListMatch is the typed request payload for ParkingRecord.ListTyped.
 type ParkingRecordListMatch struct {
-	Datasetid *string `json:"datasetid,omitempty"`
-	Fields *map[string]any `json:"fields,omitempty"`
-	Geometry *map[string]any `json:"geometry,omitempty"`
-	RecordTimestamp *string `json:"record_timestamp,omitempty"`
-	Recordid *string `json:"recordid,omitempty"`
+	Dataset string `json:"dataset"`
+	ExcludePhid *string `json:"exclude_phid,omitempty"`
+	ExcludePhname *string `json:"exclude_phname,omitempty"`
+	Facet *[]any `json:"facet,omitempty"`
+	Format *string `json:"format,omitempty"`
+	Lang *string `json:"lang,omitempty"`
+	Q *string `json:"q,omitempty"`
+	RefinePhid *string `json:"refine_phid,omitempty"`
+	RefinePhname *string `json:"refine_phname,omitempty"`
+	Row *int `json:"row,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	Start *int `json:"start,omitempty"`
+	Timezone *string `json:"timezone,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

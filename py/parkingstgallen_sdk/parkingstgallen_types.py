@@ -24,17 +24,29 @@ class ParkingRecord(TypedDict, total=False):
     recordid: str
 
 
-class ParkingRecordLoadMatch(TypedDict, total=False):
-    datasetid: str
-    fields: dict
-    geometry: dict
-    record_timestamp: str
-    recordid: str
+class ParkingRecordLoadMatchRequired(TypedDict):
+    dataset: str
 
 
-class ParkingRecordListMatch(TypedDict, total=False):
-    datasetid: str
-    fields: dict
-    geometry: dict
-    record_timestamp: str
-    recordid: str
+class ParkingRecordLoadMatch(ParkingRecordLoadMatchRequired, total=False):
+    format: str
+    timezone: str
+
+
+class ParkingRecordListMatchRequired(TypedDict):
+    dataset: str
+
+
+class ParkingRecordListMatch(ParkingRecordListMatchRequired, total=False):
+    exclude_phid: str
+    exclude_phname: str
+    facet: list
+    format: str
+    lang: str
+    q: str
+    refine_phid: str
+    refine_phname: str
+    row: int
+    sort: str
+    start: int
+    timezone: str

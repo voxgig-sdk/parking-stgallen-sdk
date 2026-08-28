@@ -35,51 +35,75 @@ ParkingRecord = Struct.new(
 
 # Request payload for ParkingRecord#load.
 #
-# @!attribute [rw] datasetid
+# @!attribute [rw] dataset
+#   @return [String]
+#
+# @!attribute [rw] format
 #   @return [String, nil]
 #
-# @!attribute [rw] fields
-#   @return [Hash, nil]
-#
-# @!attribute [rw] geometry
-#   @return [Hash, nil]
-#
-# @!attribute [rw] record_timestamp
-#   @return [String, nil]
-#
-# @!attribute [rw] recordid
+# @!attribute [rw] timezone
 #   @return [String, nil]
 ParkingRecordLoadMatch = Struct.new(
-  :datasetid,
-  :fields,
-  :geometry,
-  :record_timestamp,
-  :recordid,
+  :dataset,
+  :format,
+  :timezone,
   keyword_init: true
 )
 
 # Request payload for ParkingRecord#list.
 #
-# @!attribute [rw] datasetid
+# @!attribute [rw] dataset
+#   @return [String]
+#
+# @!attribute [rw] exclude_phid
 #   @return [String, nil]
 #
-# @!attribute [rw] fields
-#   @return [Hash, nil]
-#
-# @!attribute [rw] geometry
-#   @return [Hash, nil]
-#
-# @!attribute [rw] record_timestamp
+# @!attribute [rw] exclude_phname
 #   @return [String, nil]
 #
-# @!attribute [rw] recordid
+# @!attribute [rw] facet
+#   @return [Array, nil]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
+#
+# @!attribute [rw] lang
+#   @return [String, nil]
+#
+# @!attribute [rw] q
+#   @return [String, nil]
+#
+# @!attribute [rw] refine_phid
+#   @return [String, nil]
+#
+# @!attribute [rw] refine_phname
+#   @return [String, nil]
+#
+# @!attribute [rw] row
+#   @return [Integer, nil]
+#
+# @!attribute [rw] sort
+#   @return [String, nil]
+#
+# @!attribute [rw] start
+#   @return [Integer, nil]
+#
+# @!attribute [rw] timezone
 #   @return [String, nil]
 ParkingRecordListMatch = Struct.new(
-  :datasetid,
-  :fields,
-  :geometry,
-  :record_timestamp,
-  :recordid,
+  :dataset,
+  :exclude_phid,
+  :exclude_phname,
+  :facet,
+  :format,
+  :lang,
+  :q,
+  :refine_phid,
+  :refine_phname,
+  :row,
+  :sort,
+  :start,
+  :timezone,
   keyword_init: true
 )
 

@@ -40,7 +40,7 @@ resolves to entities, not raw records. Iterate them directly, and call
 `.data()` on one for the record it holds:
 
 ```ts
-const parkingrecords = await client.ParkingRecord().list()
+const parkingrecords = await client.ParkingRecord().list({ dataset: "example" })
 
 for (const parkingrecord of parkingrecords) {
   console.log(parkingrecord)
@@ -53,7 +53,7 @@ for (const parkingrecord of parkingrecords) {
 
 ```ts
 try {
-  const parkingrecord = await client.ParkingRecord().load()
+  const parkingrecord = await client.ParkingRecord().load({ dataset: 'example_dataset' })
   console.log(parkingrecord)
 } catch (err) {
   console.error('load failed:', err)
@@ -341,14 +341,37 @@ Create an instance: `const parking_record = client.ParkingRecord()`
 #### Example: Load
 
 ```ts
-const parking_record = await client.ParkingRecord().load()
+const parking_record = await client.ParkingRecord().load({ dataset: 'dataset' })
 ```
 
 #### Example: List
 
 ```ts
-const parking_records = await client.ParkingRecord().list()
+const parking_records = await client.ParkingRecord().list({ dataset: "example" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
