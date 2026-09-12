@@ -58,6 +58,7 @@ module ParkingStgallenConfig
               "type" => "`$OBJECT`",
             },
             {
+              "format" => "date-time",
               "name" => "record_timestamp",
               "short" => "Record processing timestamp",
               "type" => "`$STRING`",
@@ -167,10 +168,16 @@ module ParkingStgallenConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/records/1.0/search/",
-                  "parts" => [
-                    "records",
-                    "1.0",
-                    "search",
+                  "segments" => [
+                    {
+                      "lit" => "records",
+                    },
+                    {
+                      "lit" => "1.0",
+                    },
+                    {
+                      "lit" => "search",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -193,6 +200,11 @@ module ParkingStgallenConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "records",
+                    "1.0",
+                    "search",
+                  ],
                 },
               ],
             },
@@ -230,10 +242,16 @@ module ParkingStgallenConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/records/1.0/download/",
-                  "parts" => [
-                    "records",
-                    "1.0",
-                    "download",
+                  "segments" => [
+                    {
+                      "lit" => "records",
+                    },
+                    {
+                      "lit" => "1.0",
+                    },
+                    {
+                      "lit" => "download",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -246,6 +264,11 @@ module ParkingStgallenConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "records",
+                    "1.0",
+                    "download",
+                  ],
                 },
               ],
             },

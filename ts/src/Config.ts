@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -81,6 +92,7 @@ class Config {
           "type": "`$OBJECT`"
         },
         {
+          "format": "date-time",
           "name": "record_timestamp",
           "short": "Record processing timestamp",
           "type": "`$STRING`"
@@ -190,10 +202,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/records/1.0/search/",
-              "parts": [
-                "records",
-                "1.0",
-                "search"
+              "segments": [
+                {
+                  "lit": "records"
+                },
+                {
+                  "lit": "1.0"
+                },
+                {
+                  "lit": "search"
+                }
               ],
               "select": {
                 "exist": [
@@ -215,7 +233,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "records",
+                "1.0",
+                "search"
+              ]
             }
           ]
         },
@@ -253,10 +276,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/records/1.0/download/",
-              "parts": [
-                "records",
-                "1.0",
-                "download"
+              "segments": [
+                {
+                  "lit": "records"
+                },
+                {
+                  "lit": "1.0"
+                },
+                {
+                  "lit": "download"
+                }
               ],
               "select": {
                 "exist": [
@@ -268,7 +297,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "records",
+                "1.0",
+                "download"
+              ]
             }
           ]
         }
@@ -284,6 +318,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

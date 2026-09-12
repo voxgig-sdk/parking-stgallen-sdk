@@ -23,6 +23,7 @@ main: kit: entity: parking_record: {
       type: "`$OBJECT`"
     }
     {
+      format: "date-time"
       name: "record_timestamp"
       req: false
       short: "Record processing timestamp"
@@ -145,10 +146,16 @@ main: kit: entity: parking_record: {
           }
           method: "GET"
           orig: "/records/1.0/search/"
-          parts: [
-            "records"
-            "1.0"
-            "search"
+          segments: [
+            {
+              lit: "records"
+            }
+            {
+              lit: "1.0"
+            }
+            {
+              lit: "search"
+            }
           ]
           select: {
             exist: [
@@ -208,10 +215,16 @@ main: kit: entity: parking_record: {
           }
           method: "GET"
           orig: "/records/1.0/download/"
-          parts: [
-            "records"
-            "1.0"
-            "download"
+          segments: [
+            {
+              lit: "records"
+            }
+            {
+              lit: "1.0"
+            }
+            {
+              lit: "download"
+            }
           ]
           select: {
             exist: [
