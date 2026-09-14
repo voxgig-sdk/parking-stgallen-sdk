@@ -105,7 +105,7 @@ local results, err = client:ParkingRecord():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/releases) |
+| TypeScript | `@voxgig-sdk/parking-stgallen-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/releases) |
 | Python | `voxgig-sdk-parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/releases) |
 | PHP | `voxgig-sdk/parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/parking-stgallen-sdk/go` | `go get github.com/voxgig-sdk/parking-stgallen-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:ParkingRecord():list()
 ### TypeScript
 
 ```ts
-import { ParkingStgallenSDK } from '@voxgig-sdk/parking-stgallen'
+import { ParkingStgallenSDK } from '@voxgig-sdk/parking-stgallen-sdk'
 
 const client = new ParkingStgallenSDK()
 
