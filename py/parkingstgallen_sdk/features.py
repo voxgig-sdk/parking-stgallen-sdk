@@ -1,12 +1,18 @@
 # ParkingStgallen SDK feature factory
 
 from parkingstgallen_sdk.feature.base_feature import ParkingStgallenBaseFeature
+from parkingstgallen_sdk.feature.ratelimit_feature import ParkingStgallenRatelimitFeature
+from parkingstgallen_sdk.feature.retry_feature import ParkingStgallenRetryFeature
 from parkingstgallen_sdk.feature.test_feature import ParkingStgallenTestFeature
+from parkingstgallen_sdk.feature.timeout_feature import ParkingStgallenTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: ParkingStgallenBaseFeature(),
+    "ratelimit": lambda: ParkingStgallenRatelimitFeature(),
+    "retry": lambda: ParkingStgallenRetryFeature(),
     "test": lambda: ParkingStgallenTestFeature(),
+    "timeout": lambda: ParkingStgallenTimeoutFeature(),
 }
 
 

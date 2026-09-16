@@ -5,6 +5,8 @@ import * as Fs from 'node:fs'
 
 import { test, describe, afterEach } from 'node:test'
 import assert from 'node:assert'
+import { createLiveTransport } from '../../live-runner'
+import { runLiveEntity } from '../../live-entity'
 
 
 import { ParkingStgallenSDK, BaseFeature, stdutil } from '../../..'
@@ -47,16 +49,13 @@ describe('ParkingRecordEntity', async () => {
 
     const live = 'TRUE' === process.env.PARKING_STGALLEN_TEST_LIVE
     for (const op of ['list', 'load']) {
-      if (maybeSkipControl(t, 'entityOp', 'parking_record.' + op, live)) return
+      if (!live && maybeSkipControl(t, 'entityOp', 'parking_record.' + op, live)) return
     }
 
+    
     const setup = basicSetup()
-    // The basic flow consumes synthetic IDs and field values from the
-    // fixture (entity TestData.json). Those don't exist on the live API.
-    // Skip live runs unless the user provided a real ENTID env override.
-    if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set PARKING_STGALLEN_TEST_PARKING_RECORD_ENTID JSON to run live')
-      return
+    if (setup.live) {
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":[{"active":true,"name":"datasetid","req":false,"short":"Dataset identifier","type":"`$STRING`","index$":0},{"active":true,"name":"fields","req":false,"type":"`$OBJECT`","index$":1},{"active":true,"name":"geometry","req":false,"short":"GeoJSON geometry","type":"`$OBJECT`","index$":2},{"active":true,"format":"date-time","name":"record_timestamp","req":false,"short":"Record processing timestamp","type":"`$STRING`","index$":3},{"active":true,"name":"recordid","req":false,"short":"Unique record identifier","type":"`$STRING`","index$":4}],"name":"parking_record","op":{"list":{"input":"data","name":"list","points":[{"active":true,"args":{"query":[{"active":true,"example":"freie-parkplatze-in-der-stadt-stgallen-pls","kind":"query","name":"dataset","orig":"dataset","reqd":true,"type":"`$STRING`","index$":0},{"active":true,"kind":"query","name":"exclude_phid","orig":"exclude_phid","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"kind":"query","name":"exclude_phname","orig":"exclude_phname","reqd":false,"type":"`$STRING`","index$":2},{"active":true,"kind":"query","name":"facet","orig":"facet","reqd":false,"type":"`$ARRAY`","index$":3},{"active":true,"example":"json","kind":"query","name":"format","orig":"format","reqd":false,"type":"`$STRING`","index$":4},{"active":true,"example":"de","kind":"query","name":"lang","orig":"lang","reqd":false,"type":"`$STRING`","index$":5},{"active":true,"kind":"query","name":"q","orig":"q","reqd":false,"type":"`$STRING`","index$":6},{"active":true,"kind":"query","name":"refine_phid","orig":"refine_phid","reqd":false,"type":"`$STRING`","index$":7},{"active":true,"kind":"query","name":"refine_phname","orig":"refine_phname","reqd":false,"type":"`$STRING`","index$":8},{"active":true,"example":10,"kind":"query","name":"row","orig":"row","reqd":false,"type":"`$INTEGER`","index$":9},{"active":true,"kind":"query","name":"sort","orig":"sort","reqd":false,"type":"`$STRING`","index$":10},{"active":true,"example":0,"kind":"query","name":"start","orig":"start","reqd":false,"type":"`$INTEGER`","index$":11},{"active":true,"example":"UTC","kind":"query","name":"timezone","orig":"timezone","reqd":false,"type":"`$STRING`","index$":12}]},"contract":{"id":"GET /records/1.0/search/","json":"{\"operationId\":\"searchParkingRecords\",\"parameters\":[{\"description\":\"Dataset identifier\",\"in\":\"query\",\"name\":\"dataset\",\"required\":true,\"schema\":{\"default\":\"freie-parkplatze-in-der-stadt-stgallen-pls\",\"type\":\"string\"}},{\"description\":\"Full-text search query\",\"in\":\"query\",\"name\":\"q\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of results to return (max 100)\",\"in\":\"query\",\"name\":\"rows\",\"required\":false,\"schema\":{\"default\":10,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Index of the first result to return (for pagination)\",\"in\":\"query\",\"name\":\"start\",\"required\":false,\"schema\":{\"default\":0,\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"Sort order (field name, optionally prefixed with - for descending order)\",\"in\":\"query\",\"name\":\"sort\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Field(s) to facet on (can be used multiple times)\",\"explode\":true,\"in\":\"query\",\"name\":\"facet\",\"required\":false,\"schema\":{\"items\":{\"enum\":[\"phid\",\"phname\"],\"type\":\"string\"},\"type\":\"array\"}},{\"description\":\"Filter by parking house ID\",\"in\":\"query\",\"name\":\"refine.phid\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter by parking house name\",\"in\":\"query\",\"name\":\"refine.phname\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Exclude specific parking house ID\",\"in\":\"query\",\"name\":\"exclude.phid\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Exclude specific parking house name\",\"in\":\"query\",\"name\":\"exclude.phname\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Response format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"csv\",\"geojson\"],\"type\":\"string\"}},{\"description\":\"Timezone for date/time fields\",\"in\":\"query\",\"name\":\"timezone\",\"required\":false,\"schema\":{\"default\":\"UTC\",\"type\":\"string\"}},{\"description\":\"Language for results\",\"in\":\"query\",\"name\":\"lang\",\"required\":false,\"schema\":{\"default\":\"de\",\"enum\":[\"de\",\"en\",\"it\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/geo+json\":{\"schema\":{\"description\":\"GeoJSON formatted parking records\",\"type\":\"object\"}},\"application/json\":{\"schema\":{\"properties\":{\"facet_groups\":{\"description\":\"Facet results if faceting was requested\",\"items\":{\"type\":\"object\"},\"type\":\"array\"},\"nhits\":{\"description\":\"Total number of matching records\",\"type\":\"integer\"},\"parameters\":{\"description\":\"Query parameters used for the search\",\"type\":\"object\"},\"records\":{\"items\":{\"properties\":{\"datasetid\":{\"description\":\"Dataset identifier\",\"type\":\"string\"},\"fields\":{\"properties\":{\"free\":{\"description\":\"Number of free parking spaces\",\"type\":\"integer\"},\"geo_point_2d\":{\"description\":\"Geographic coordinates [lat, lon]\",\"items\":{\"type\":\"number\"},\"type\":\"array\"},\"open\":{\"description\":\"Whether the parking house is open\",\"type\":\"boolean\"},\"phid\":{\"description\":\"Parking house ID\",\"type\":\"string\"},\"phname\":{\"description\":\"Parking house name\",\"type\":\"string\"},\"shortfree\":{\"description\":\"Number of available short-term parking spaces\",\"type\":\"integer\"},\"timestamp\":{\"description\":\"Timestamp of the data\",\"format\":\"date-time\",\"type\":\"string\"},\"total\":{\"description\":\"Total number of parking spaces\",\"type\":\"integer\"}},\"type\":\"object\"},\"geometry\":{\"description\":\"GeoJSON geometry\",\"type\":\"object\"},\"record_timestamp\":{\"description\":\"Record processing timestamp\",\"format\":\"date-time\",\"type\":\"string\"},\"recordid\":{\"description\":\"Unique record identifier\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}},\"text/csv\":{\"schema\":{\"description\":\"CSV formatted parking records\",\"type\":\"string\"}}},\"description\":\"Successful response with parking records\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"404\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Dataset not found\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/records/1.0/search/","segments":[{"lit":"records"},{"lit":"1.0"},{"lit":"search"}],"select":{"exist":["dataset","exclude_phid","exclude_phname","facet","format","lang","q","refine_phid","refine_phname","row","sort","start","timezone"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"list"},"load":{"input":"data","name":"load","points":[{"active":true,"args":{"query":[{"active":true,"example":"freie-parkplatze-in-der-stadt-stgallen-pls","kind":"query","name":"dataset","orig":"dataset","reqd":true,"type":"`$STRING`","index$":0},{"active":true,"example":"json","kind":"query","name":"format","orig":"format","reqd":false,"type":"`$STRING`","index$":1},{"active":true,"example":"UTC","kind":"query","name":"timezone","orig":"timezone","reqd":false,"type":"`$STRING`","index$":2}]},"contract":{"id":"GET /records/1.0/download/","json":"{\"operationId\":\"downloadParkingRecords\",\"parameters\":[{\"description\":\"Dataset identifier\",\"in\":\"query\",\"name\":\"dataset\",\"required\":true,\"schema\":{\"default\":\"freie-parkplatze-in-der-stadt-stgallen-pls\",\"type\":\"string\"}},{\"description\":\"Download format\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"csv\",\"geojson\",\"shp\"],\"type\":\"string\"}},{\"description\":\"Timezone for date/time fields\",\"in\":\"query\",\"name\":\"timezone\",\"required\":false,\"schema\":{\"default\":\"UTC\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/geo+json\":{\"schema\":{\"description\":\"Complete dataset in GeoJSON format\",\"type\":\"object\"}},\"application/json\":{\"schema\":{\"description\":\"Complete dataset in JSON format\",\"type\":\"object\"}},\"application/zip\":{\"schema\":{\"description\":\"Complete dataset in Shapefile format (zipped)\",\"format\":\"binary\",\"type\":\"string\"}},\"text/csv\":{\"schema\":{\"description\":\"Complete dataset in CSV format\",\"type\":\"string\"}}},\"description\":\"Successful download\"},\"400\":{\"description\":\"Bad request - invalid parameters\"},\"404\":{\"description\":\"Dataset not found\"}},\"securitySource\":\"unspecified\"}","source":"openapi3","version":1},"kind":"http","method":"GET","orig":"/records/1.0/download/","segments":[{"lit":"records"},{"lit":"1.0"},{"lit":"download"}],"select":{"exist":["dataset","format","timezone"]},"transform":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"parking_record","name__orig":"parking_record","Name":"ParkingRecord","name_":"parking_record","name-":"parking-record","NAME":"PARKING_RECORD","index$":0}, {"active":true,"entity":"parking_record","key$":"BasicParkingRecordFlow","kind":"basic","name":"BasicParkingRecordFlow","param":{},"step":[{"active":true,"data":{},"input":{},"match":{},"op":"list","spec":[],"valid":[{"apply":"ItemExists","def":{"ref":"parking_record_ref01"}}],"index$":0},{"active":true,"data":{},"input":{"ref":"parking_record_ref01","srcdatavar":"parking_record_ref01_data","suffix":"_dt0"},"match":{},"op":"load","spec":[],"valid":[{"apply":"TextFieldMark","def":{"mark":"Mark01-parking_record_ref01"}}],"index$":1}]}, 'ParkingRecord')
     }
     const client = setup.client
     const struct = setup.struct
@@ -115,13 +114,6 @@ function basicSetup(extra?: any) {
       }]
     })
 
-  // Detect whether the user provided a real ENTID JSON via env var. The
-  // basic flow consumes synthetic IDs from the fixture file; without an
-  // override those synthetic IDs reach the live API and 4xx. Surface this
-  // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['PARKING_STGALLEN_TEST_PARKING_RECORD_ENTID']
-  const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
-
   const env = envOverride({
     'PARKING_STGALLEN_TEST_PARKING_RECORD_ENTID': idmap,
     'PARKING_STGALLEN_TEST_LIVE': 'FALSE',
@@ -132,7 +124,13 @@ function basicSetup(extra?: any) {
 
   const live = 'TRUE' === env.PARKING_STGALLEN_TEST_LIVE
 
+  const transport = createLiveTransport()
   if (live) {
+    const rawIds = process.env['PARKING_STGALLEN_TEST_PARKING_RECORD_ENTID']
+    idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {}
+    if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+      throw new Error('Live ENTID must be a JSON object')
+    }
     client = new ParkingStgallenSDK(merge([
       // FIRST, so the generated fields below win: sdk-test-control.json's
       // test.client.options adds to the live client, it does not redirect it.
@@ -144,7 +142,8 @@ function basicSetup(extra?: any) {
       // argument at all - so a bare 'extra' silently discarded the apikey
       // and server values above and handed the SDK undefined. Harmless
       // while there was nothing in that object; not harmless now.
-      extra || {}
+      extra || {},
+      { system: { fetch: transport.fetch } }
     ]))
   }
 
@@ -157,7 +156,7 @@ function basicSetup(extra?: any) {
     data: entityData,
     explain: 'TRUE' === env.PARKING_STGALLEN_TEST_EXPLAIN,
     live,
-    syntheticOnly: live && !idmapOverridden,
+    transport,
     now: Date.now(),
   }
 

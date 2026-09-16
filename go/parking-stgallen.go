@@ -29,8 +29,17 @@ func init() {
 	core.NewBaseFeatureFunc = func() core.Feature {
 		return feature.NewBaseFeature()
 	}
+	core.NewRatelimitFeatureFunc = func() core.Feature {
+		return feature.NewRatelimitFeature()
+	}
+	core.NewRetryFeatureFunc = func() core.Feature {
+		return feature.NewRetryFeature()
+	}
 	core.NewTestFeatureFunc = func() core.Feature {
 		return feature.NewTestFeature()
+	}
+	core.NewTimeoutFeatureFunc = func() core.Feature {
+		return feature.NewTimeoutFeature()
 	}
 	core.NewParkingRecordEntityFunc = func(client *core.ParkingStgallenSDK, entopts map[string]any) core.ParkingStgallenEntity {
 		return entity.NewParkingRecordEntity(client, entopts)
@@ -55,4 +64,7 @@ var SharedConfig = core.SharedConfig
 func New() *ParkingStgallenSDK  { return NewParkingStgallenSDK(nil) }
 func Test() *ParkingStgallenSDK { return TestSDK(nil, nil) }
 var NewBaseFeature = feature.NewBaseFeature
+var NewRatelimitFeature = feature.NewRatelimitFeature
+var NewRetryFeature = feature.NewRetryFeature
 var NewTestFeature = feature.NewTestFeature
+var NewTimeoutFeature = feature.NewTimeoutFeature

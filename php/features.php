@@ -4,7 +4,10 @@ declare(strict_types=1);
 // ParkingStgallen SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class ParkingStgallenFeatures
@@ -14,8 +17,14 @@ class ParkingStgallenFeatures
         switch ($name) {
             case "base":
                 return new ParkingStgallenBaseFeature();
+            case "ratelimit":
+                return new ParkingStgallenRatelimitFeature();
+            case "retry":
+                return new ParkingStgallenRetryFeature();
             case "test":
                 return new ParkingStgallenTestFeature();
+            case "timeout":
+                return new ParkingStgallenTimeoutFeature();
             default:
                 return new ParkingStgallenBaseFeature();
         }
@@ -31,7 +40,10 @@ class ParkingStgallenFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;
