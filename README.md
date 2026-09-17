@@ -105,12 +105,12 @@ local results, err = client:ParkingRecord():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/parking-stgallen-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/releases) |
-| Python | `voxgig-sdk-parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/releases) |
-| PHP | `voxgig-sdk/parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/releases) |
+| TypeScript | `@voxgig-sdk/parking-stgallen-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/tags) |
+| Python | `voxgig-sdk-parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/tags) |
+| PHP | `voxgig-sdk/parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/parking-stgallen-sdk/go` | `go get github.com/voxgig-sdk/parking-stgallen-sdk/go@latest` |
-| Ruby | `voxgig-sdk-parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/releases) |
-| Lua | `voxgig-sdk-parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/releases) |
+| Ruby | `voxgig-sdk-parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/tags) |
+| Lua | `voxgig-sdk-parking-stgallen` | publish pending — [install from git tag](https://github.com/voxgig-sdk/parking-stgallen-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/parking-stgallen-sdk/go-cli` | `go install github.com/voxgig-sdk/parking-stgallen-sdk/go-cli/cmd/parking-stgallen@latest` |
 | Go MCP server | `github.com/voxgig-sdk/parking-stgallen-sdk/go-mcp` | `go get github.com/voxgig-sdk/parking-stgallen-sdk/go-mcp@latest` |
 
