@@ -99,28 +99,33 @@ module ParkingStgallenConfig
           "fields" => [
             {
               "name" => "datasetid",
-              "short" => "Dataset identifier",
+              "title" => "Datasetid",
               "type" => "`$STRING`",
+              "short" => "Dataset identifier",
             },
             {
               "name" => "fields",
+              "title" => "Fields",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "geometry",
-              "short" => "GeoJSON geometry",
+              "title" => "Geometry",
               "type" => "`$OBJECT`",
+              "short" => "GeoJSON geometry",
             },
             {
-              "format" => "date-time",
               "name" => "record_timestamp",
-              "short" => "Record processing timestamp",
+              "title" => "Record Timestamp",
               "type" => "`$STRING`",
+              "short" => "Record processing timestamp",
+              "format" => "date-time",
             },
             {
               "name" => "recordid",
-              "short" => "Unique record identifier",
+              "title" => "Recordid",
               "type" => "`$STRING`",
+              "short" => "Unique record identifier",
             },
           ],
           "name" => "parking_record",
@@ -130,95 +135,6 @@ module ParkingStgallenConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "freie-parkplatze-in-der-stadt-stgallen-pls",
-                        "kind" => "query",
-                        "name" => "dataset",
-                        "orig" => "dataset",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "exclude_phid",
-                        "orig" => "exclude_phid",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "exclude_phname",
-                        "orig" => "exclude_phname",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "facet",
-                        "orig" => "facet",
-                        "type" => "`$ARRAY`",
-                      },
-                      {
-                        "example" => "json",
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "de",
-                        "kind" => "query",
-                        "name" => "lang",
-                        "orig" => "lang",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "q",
-                        "orig" => "q",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "refine_phid",
-                        "orig" => "refine_phid",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "refine_phname",
-                        "orig" => "refine_phname",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 10,
-                        "kind" => "query",
-                        "name" => "row",
-                        "orig" => "row",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "sort",
-                        "orig" => "sort",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 0,
-                        "kind" => "query",
-                        "name" => "start",
-                        "orig" => "start",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => "UTC",
-                        "kind" => "query",
-                        "name" => "timezone",
-                        "orig" => "timezone",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/records/1.0/search/",
@@ -233,6 +149,105 @@ module ParkingStgallenConfig
                       "lit" => "search",
                     },
                   ],
+                  "parts" => [
+                    "records",
+                    "1.0",
+                    "search",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "dataset",
+                        "orig" => "dataset",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                        "example" => "freie-parkplatze-in-der-stadt-stgallen-pls",
+                      },
+                      {
+                        "name" => "exclude_phid",
+                        "orig" => "exclude_phid",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "exclude_phname",
+                        "orig" => "exclude_phname",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "facet",
+                        "orig" => "facet",
+                        "type" => "`$ARRAY`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "json",
+                      },
+                      {
+                        "name" => "lang",
+                        "orig" => "lang",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "de",
+                      },
+                      {
+                        "name" => "q",
+                        "orig" => "q",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "refine_phid",
+                        "orig" => "refine_phid",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "refine_phname",
+                        "orig" => "refine_phname",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "row",
+                        "orig" => "row",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 10,
+                      },
+                      {
+                        "name" => "sort",
+                        "orig" => "sort",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "start",
+                        "orig" => "start",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 0,
+                      },
+                      {
+                        "name" => "timezone",
+                        "orig" => "timezone",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "UTC",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "dataset",
@@ -250,15 +265,6 @@ module ParkingStgallenConfig
                       "timezone",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "records",
-                    "1.0",
-                    "search",
-                  ],
                 },
               ],
             },
@@ -267,32 +273,6 @@ module ParkingStgallenConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "example" => "freie-parkplatze-in-der-stadt-stgallen-pls",
-                        "kind" => "query",
-                        "name" => "dataset",
-                        "orig" => "dataset",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "json",
-                        "kind" => "query",
-                        "name" => "format",
-                        "orig" => "format",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "UTC",
-                        "kind" => "query",
-                        "name" => "timezone",
-                        "orig" => "timezone",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/records/1.0/download/",
@@ -307,6 +287,42 @@ module ParkingStgallenConfig
                       "lit" => "download",
                     },
                   ],
+                  "parts" => [
+                    "records",
+                    "1.0",
+                    "download",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "dataset",
+                        "orig" => "dataset",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                        "example" => "freie-parkplatze-in-der-stadt-stgallen-pls",
+                      },
+                      {
+                        "name" => "format",
+                        "orig" => "format",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "json",
+                      },
+                      {
+                        "name" => "timezone",
+                        "orig" => "timezone",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "UTC",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "dataset",
@@ -314,15 +330,6 @@ module ParkingStgallenConfig
                       "timezone",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "records",
-                    "1.0",
-                    "download",
-                  ],
                 },
               ],
             },

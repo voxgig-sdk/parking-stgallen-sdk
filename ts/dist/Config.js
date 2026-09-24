@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -114,28 +107,33 @@ class Config {
             "fields": [
                 {
                     "name": "datasetid",
-                    "short": "Dataset identifier",
-                    "type": "`$STRING`"
+                    "title": "Datasetid",
+                    "type": "`$STRING`",
+                    "short": "Dataset identifier"
                 },
                 {
                     "name": "fields",
+                    "title": "Fields",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "geometry",
-                    "short": "GeoJSON geometry",
-                    "type": "`$OBJECT`"
+                    "title": "Geometry",
+                    "type": "`$OBJECT`",
+                    "short": "GeoJSON geometry"
                 },
                 {
-                    "format": "date-time",
                     "name": "record_timestamp",
+                    "title": "Record Timestamp",
+                    "type": "`$STRING`",
                     "short": "Record processing timestamp",
-                    "type": "`$STRING`"
+                    "format": "date-time"
                 },
                 {
                     "name": "recordid",
-                    "short": "Unique record identifier",
-                    "type": "`$STRING`"
+                    "title": "Recordid",
+                    "type": "`$STRING`",
+                    "short": "Unique record identifier"
                 }
             ],
             "name": "parking_record",
@@ -145,95 +143,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "freie-parkplatze-in-der-stadt-stgallen-pls",
-                                        "kind": "query",
-                                        "name": "dataset",
-                                        "orig": "dataset",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "exclude_phid",
-                                        "orig": "exclude_phid",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "exclude_phname",
-                                        "orig": "exclude_phname",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "facet",
-                                        "orig": "facet",
-                                        "type": "`$ARRAY`"
-                                    },
-                                    {
-                                        "example": "json",
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "de",
-                                        "kind": "query",
-                                        "name": "lang",
-                                        "orig": "lang",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "q",
-                                        "orig": "q",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "refine_phid",
-                                        "orig": "refine_phid",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "refine_phname",
-                                        "orig": "refine_phname",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 10,
-                                        "kind": "query",
-                                        "name": "row",
-                                        "orig": "row",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "sort",
-                                        "orig": "sort",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 0,
-                                        "kind": "query",
-                                        "name": "start",
-                                        "orig": "start",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": "UTC",
-                                        "kind": "query",
-                                        "name": "timezone",
-                                        "orig": "timezone",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/records/1.0/search/",
@@ -248,6 +157,105 @@ class Config {
                                     "lit": "search"
                                 }
                             ],
+                            "parts": [
+                                "records",
+                                "1.0",
+                                "search"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "dataset",
+                                        "orig": "dataset",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true,
+                                        "example": "freie-parkplatze-in-der-stadt-stgallen-pls"
+                                    },
+                                    {
+                                        "name": "exclude_phid",
+                                        "orig": "exclude_phid",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "exclude_phname",
+                                        "orig": "exclude_phname",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "facet",
+                                        "orig": "facet",
+                                        "type": "`$ARRAY`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "json"
+                                    },
+                                    {
+                                        "name": "lang",
+                                        "orig": "lang",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "de"
+                                    },
+                                    {
+                                        "name": "q",
+                                        "orig": "q",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "refine_phid",
+                                        "orig": "refine_phid",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "refine_phname",
+                                        "orig": "refine_phname",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "row",
+                                        "orig": "row",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 10
+                                    },
+                                    {
+                                        "name": "sort",
+                                        "orig": "sort",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "start",
+                                        "orig": "start",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 0
+                                    },
+                                    {
+                                        "name": "timezone",
+                                        "orig": "timezone",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "UTC"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "dataset",
@@ -264,16 +272,7 @@ class Config {
                                     "start",
                                     "timezone"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "records",
-                                "1.0",
-                                "search"
-                            ]
+                            }
                         }
                     ]
                 },
@@ -282,32 +281,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "example": "freie-parkplatze-in-der-stadt-stgallen-pls",
-                                        "kind": "query",
-                                        "name": "dataset",
-                                        "orig": "dataset",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "json",
-                                        "kind": "query",
-                                        "name": "format",
-                                        "orig": "format",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "UTC",
-                                        "kind": "query",
-                                        "name": "timezone",
-                                        "orig": "timezone",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/records/1.0/download/",
@@ -322,22 +295,49 @@ class Config {
                                     "lit": "download"
                                 }
                             ],
+                            "parts": [
+                                "records",
+                                "1.0",
+                                "download"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "dataset",
+                                        "orig": "dataset",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true,
+                                        "example": "freie-parkplatze-in-der-stadt-stgallen-pls"
+                                    },
+                                    {
+                                        "name": "format",
+                                        "orig": "format",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "json"
+                                    },
+                                    {
+                                        "name": "timezone",
+                                        "orig": "timezone",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "UTC"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "dataset",
                                     "format",
                                     "timezone"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "records",
-                                "1.0",
-                                "download"
-                            ]
+                            }
                         }
                     ]
                 }

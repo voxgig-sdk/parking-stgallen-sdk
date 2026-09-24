@@ -1,0 +1,262 @@
+# Entity: parking_record
+
+main: kit: entity: parking_record: {
+
+  alias: field: {}
+
+  fields: {
+    datasetid: {
+      h: "Datasetid"
+      n: "datasetid"
+      r: false
+      sh: "Dataset identifier"
+      t: "`$STRING`"
+    }
+    fields: {
+      h: "Fields"
+      n: "fields"
+      r: false
+      t: "`$OBJECT`"
+    }
+    geometry: {
+      h: "Geometry"
+      n: "geometry"
+      r: false
+      sh: "GeoJSON geometry"
+      t: "`$OBJECT`"
+    }
+    record_timestamp: {
+      fo: "date-time"
+      h: "Record Timestamp"
+      n: "record_timestamp"
+      r: false
+      sh: "Record processing timestamp"
+      t: "`$STRING`"
+    }
+    recordid: {
+      h: "Recordid"
+      n: "recordid"
+      r: false
+      sh: "Unique record identifier"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "parking_record"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /records/1.0/search/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "freie-parkplatze-in-der-stadt-stgallen-pls"
+                k: "query"
+                n: "dataset"
+                or: "dataset"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "exclude_phid"
+                or: "exclude_phid"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "exclude_phname"
+                or: "exclude_phname"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "facet"
+                or: "facet"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "de"
+                k: "query"
+                n: "lang"
+                or: "lang"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "q"
+                or: "q"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "refine_phid"
+                or: "refine_phid"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "refine_phname"
+                or: "refine_phname"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 10
+                k: "query"
+                n: "row"
+                or: "row"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "start"
+                or: "start"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: "UTC"
+                k: "query"
+                n: "timezone"
+                or: "timezone"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/records/1.0/search/"
+          q: {
+            exist: [
+              "dataset"
+              "exclude_phid"
+              "exclude_phname"
+              "facet"
+              "format"
+              "lang"
+              "q"
+              "refine_phid"
+              "refine_phname"
+              "row"
+              "sort"
+              "start"
+              "timezone"
+            ]
+          }
+          s: [
+            {
+              lit: "records"
+            }
+            {
+              lit: "1.0"
+            }
+            {
+              lit: "search"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /records/1.0/download/"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: "freie-parkplatze-in-der-stadt-stgallen-pls"
+                k: "query"
+                n: "dataset"
+                or: "dataset"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "json"
+                k: "query"
+                n: "format"
+                or: "format"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "UTC"
+                k: "query"
+                n: "timezone"
+                or: "timezone"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/records/1.0/download/"
+          q: {
+            exist: [
+              "dataset"
+              "format"
+              "timezone"
+            ]
+          }
+          s: [
+            {
+              lit: "records"
+            }
+            {
+              lit: "1.0"
+            }
+            {
+              lit: "download"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

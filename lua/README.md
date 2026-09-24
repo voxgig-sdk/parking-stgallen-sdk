@@ -43,7 +43,7 @@ local parkingrecords, err = client:ParkingRecord():list()
 if err then error(err) end
 
 for _, item in ipairs(parkingrecords) do
-  print(item["datasetid"])
+  print(item)
 end
 ```
 
